@@ -3,3 +3,113 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.image-link span
+{
+  text-decoration: underline;
+  margin-right: 5px;
+}
+
+.half-rule { 
+  margin-bottom:0px;
+  margin-top: 10px
+}
+
+.col-xs-12.without-lateral-padding {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.footer {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.btn.without-padding-left { 
+  padding-left: 0px;
+}
+
+/*
+  .col-xs-2
+*/
+
+.col-xs-2.without-padding-left {
+  padding-left: 0px;
+}
+
+.text-black {
+  color: rgb(156, 156, 156);
+}
+
+/*
+  .btn-link.*
+*/
+
+.btn-link.btn.without-h-padding {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+.btn-link.btn.without-padding-right {
+  padding-right: 0px;
+}
+.btn-link.btn.without-padding-top {
+  padding-top : 0px;
+  padding-right : 0px;
+}
+
+.btn-link.edit-link {
+  display: none;
+ /* margin-top: 15px;*/
+  margin-left:12px;
+  margin-right:12px;
+  padding:0px;
+}
+
+
+
+/*
+  .list-group.*
+*/
+
+
+/*
+  .list-group-item.*
+*/
+
+.list-group-item.without-v-padding {
+  padding-bottom: 0px;
+  padding-top: 0px;  
+}
+.list-group-item.without-padding-bottom {
+  padding-bottom: 0px;
+}
+.list-group-item.small-padding-bottom {
+  padding-bottom: 5px;
+}
+.list-group-item.border-reply {
+  border-top: 0px;  
+  border-right:0px;
+  border-bottom:0px;
+  border-left-width: 2px;
+  padding-left:20px;
+  padding-bottom:5px;
+  padding-top:5px;
+ }
+.list-group-item.bg-gray { 
+  background-color: rgb(245, 245, 245);
+}
+.list-group-item.box-small-padding {
+  padding: 5px;
+}
+
+.list-group-item:hover .edit-link {
+  display:inline-block;
+}
+
+/*
+  .form-group.*
+*/
+
+.form-group.without-bottom-margin {
+  margin-bottom: 0px;
+}

@@ -11,10 +11,16 @@ import TrashIcon from 'react-icons/lib/fa/trash-o'
 import EditIcon from 'react-icons/lib/ti/pencil'
 
 import Post from './components/Post'
+import * as PostAPI from './util/PostAPI'
 
 class App extends Component {
 
   render() {
+
+    PostAPI.getAllPosts().then((data) => {
+      console.log(data);
+    })
+
     return (
       <div className="App">
 

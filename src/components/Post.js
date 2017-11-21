@@ -28,7 +28,7 @@ class Post extends Component {
     voteScore : -2,
     commentCount : 0,
     vote : -1,
-    canIRemove : false
+    canIRemove : false,    
   }
 
     render() {

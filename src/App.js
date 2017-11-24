@@ -13,13 +13,27 @@ import EditIcon from 'react-icons/lib/ti/pencil'
 import Post from './components/Post'
 import * as PostAPI from './util/PostAPI'
 
+import configureStore from './store/configureStore'
+
+import { fetchPosts } from './actions/PostActions';
+
+const store = configureStore();
+
 class App extends Component {
 
-  render() {
+    
 
+    componentDidMount() {
+        console.log('componentDidMount');
+
+        console.log(store.dispatch(fetchPosts()));
+    }
+
+  render() {
+/*
     PostAPI.getAllPosts().then((data) => {
       console.log(data);
-    })
+    })*/
 
     return (
       <div className="App">
@@ -50,6 +64,7 @@ class App extends Component {
           <Col xs={6} md={4}>
 
             <Post/>
+             
 
             <ListGroup>
               <ListGroupItem className='text-left without-padding-bottom'>

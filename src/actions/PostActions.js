@@ -1,4 +1,4 @@
-import Axiios from 'axios';
+import Axios from 'axios';
 
 const api = "http://localhost:3001"
 const URL_FETCH_POSTS  = `${api}/posts`;

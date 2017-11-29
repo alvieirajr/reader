@@ -9,35 +9,39 @@ import HeartOutline from 'react-icons/lib/ti/heart-outline'
 import Comment from 'react-icons/lib/ti/messages'
 import TrashIcon from 'react-icons/lib/fa/trash-o'
 import EditIcon from 'react-icons/lib/ti/pencil'
-
+import { connect } from 'react-redux';
 import Post from './components/Post'
 import * as PostAPI from './util/PostAPI'
-
-import configureStore from './store/configureStore'
-
-import { fetchPosts } from './actions/PostActions';
-
-const store = configureStore();
+import * as PostActions from './actions/PostActions';
+import configureStore from './store/configureStore';
 
 class App extends Component {
 
-    
+  constructor(props) {
+    super(props);
 
-    componentDidMount() {
-        console.log('componentDidMount');
-
-        console.log(store.dispatch(fetchPosts()));
+    this.state = {
+      posts : []
     }
+  }
+
+
+componentDidMount() {
+  
+  
+  //store.store.subscribe('FETCH_POSTS_SUCCESS');
+  
+  this.props.fetchPosts();
+ 
+}
 
   render() {
-/*
-    PostAPI.getAllPosts().then((data) => {
-      console.log(data);
-    })*/
+    console.log(this)
+     
 
-    return (
-      <div className="App">
 
+    return (      
+      <div className="App">        
         <Navbar>
           <Navbar.Header>
             <Navbar.Brand>
@@ -57,14 +61,17 @@ class App extends Component {
           </Nav>
         </Navbar>
 
-
+        <ul>
+        {this.props.posts.map((item) => 
+          <li><p>{item.title}</p></li>
+        )}
+        </ul>
 
         <Row>
           <Col xs={3} md={4} />
           <Col xs={6} md={4}>
 
             <Post/>
-             
 
             <ListGroup>
               <ListGroupItem className='text-left without-padding-bottom'>
@@ -292,4 +299,22 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  console.log(state)
+  return {
+      posts: state.posts
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+  // You can now say this.props.createBook
+  fetchPosts: (posts) => dispatch(PostActions.fetchPosts())
+  }
+};
+
+
+//export default App;
+
+
+export default connect(mapStateToProps, mapDispatchToProps )(App)

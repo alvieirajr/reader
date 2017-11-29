@@ -14,17 +14,18 @@ const headers = {
 } 
 
 export const fetchPostsSuccess = (posts) => {
+    console.log(posts);
     return {
         type : 'FETCH_POSTS_SUCCESS',
-        posts
+        posts : posts
     }
 }
 
 export const fetchPosts = () => {
     return (dispatch) => {
-        return Axios.get(URL_FETCH_POSTS, { headers })
-            .then(response => {
-                dispatch(fetchPostsSuccess(response.data))
+        Axios.get(URL_FETCH_POSTS, { headers })
+            .then(response => {                
+                dispatch(fetchPostsSuccess(response.data));                
             })
             .catch(error => {
                 throw(error);

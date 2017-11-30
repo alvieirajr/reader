@@ -16,9 +16,17 @@ import IconThumbsDown from 'react-icons/lib/fa/thumbs-down'
 import IconThumbsODown from 'react-icons/lib/fa/thumbs-o-down'
 import IconThumbsUp from 'react-icons/lib/fa/thumbs-up'
 import IconThumbsOUp from 'react-icons/lib/fa/thumbs-o-up'
+import { connect } from 'react-redux';
 
 class Post extends Component {
+  constructor(props) {
+    super(props);
 
+    this.state = {
+      posts : []
+    }
+  }
+/*
   state = {
     timestamp : 'Há 9h',
     title : 'O que eu penso sobre isso?',
@@ -30,20 +38,31 @@ class Post extends Component {
     vote : -1,
     canIRemove : false,    
   }
-
+*/
     render() {
-
+console.log(this)
         return(
-            <ListGroup>
-              <PostBody/>            
-              <PostSummary/ >    
-              <InputText/>
-              <PostComment/>
+            <ListGroup>              
+   
+              <PostBody {...this.props} />            
+              <PostSummary {...this.props} />                              
                 
           </ListGroup>          
 
         );
     }
-}
+} 
 
 export default Post;
+
+/*
+const mapStateToProps = (state) => {
+  console.log(state)
+  return {
+      posts: state.posts
+  }
+}
+
+
+export default connect(mapStateToProps)(Post)
+*/

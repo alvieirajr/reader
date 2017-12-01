@@ -3,19 +3,15 @@ import { Label, Badge, Button, ButtonToolbar, Col, Row, ListGroup, ListGroupItem
 import EditIcon from 'react-icons/lib/ti/pencil'
 import PostCommandBar from './PostCommandBar'
 
-class PostBody extends Component { 
+function PostBody(props) {
 
-  constructor(props) {
-    super(props); 
-  }
 
-    render() {
         return(
             <ListGroupItem className='text-left without-padding-bottom'>
             
             <Row>
               <Col xs={10} >
-                <p><b>{this.props.author}</b> &#183; <Label  bsStyle='primary'>{this.props.category}</Label> &#183;  {this.props.timestamp}</p>
+                <p><b>{props.author}</b> &#183; <Label  bsStyle='primary'>{props.category}</Label> &#183;  {props.timestamp}</p>
               </Col>
               <Col xs={2} className=''>
               <Button className='edit-link' bsStyle="link"><EditIcon size={21} /></Button>
@@ -23,7 +19,7 @@ class PostBody extends Component {
             </Row>
             <Row className="editable-row">
               <Col xs={12} >
-                <span className='text-left'>{this.props.body}</span>                    
+                <span className='text-left'>{props.body}</span>                    
               </Col>
             </Row>
             <Col xs={12} className='without-lateral-padding'>
@@ -32,11 +28,11 @@ class PostBody extends Component {
             <Row>
             </Row>              
             <Row>
-              <PostCommandBar {...this.props}/>
+              <PostCommandBar {...props}/>
             </Row>
           </ListGroupItem>    
         )
-    }
+
 }
 
 export default PostBody

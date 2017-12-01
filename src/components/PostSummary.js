@@ -6,12 +6,20 @@ import EditIcon from 'react-icons/lib/ti/pencil'
 import { ListGroupItem, Row, Col } from 'react-bootstrap'
 
 class PostSummary extends Component { 
+    
+    componentDidMount() {
+        this.setState({
+            ...this.props
+        })
+    }
+
     render() {
+        if (this.state) {
         return (
             <ListGroupItem className='bg-gray without-v-padding '>
                 <Row className='footer'> 
                     <Col xs={6} className='text-left '>
-                        <span className='text-black'> <CommentIcon size={16} /> 22 </span>
+                        <span className='text-black'> <CommentIcon size={16} /> {this.state.commentCount} </span>
                     </Col>
                     <Col xs={6} className='text-right'>
                   {/*}  <span className='text-black'><EditIcon size={18} /></span>
@@ -21,6 +29,11 @@ class PostSummary extends Component {
                 </Row>                    
             </ListGroupItem>            
         )
+        } else {
+            return (
+                <div></div>
+            )
+        }
 
     }
 }

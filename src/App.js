@@ -28,21 +28,14 @@ class App extends Component {
 
 componentDidMount() {
   
-  
-  //store.store.subscribe('FETCH_POSTS_SUCCESS');
-  
   this.props.fetchPosts();
  
 }
 
   render() {
-    console.log(this)
-     
-
-
+    
     return (      
       <div className="App">        
-
         <Row>
           <Col xs={3} md={4} />
           <Col xs={6} md={4}>
@@ -52,14 +45,12 @@ componentDidMount() {
           </Col>
           <Col xs={1} md={4} />
         </Row>
-
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  console.log(state)
+const mapStateToProps = (state) => {  
   return {
       posts: state.posts
   }

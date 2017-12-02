@@ -40,7 +40,7 @@ class Post extends Component {
   }
 */
     render() {
-console.log(this)
+//console.log(this)
         return(
             <ListGroup>              
    

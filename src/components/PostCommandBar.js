@@ -8,28 +8,29 @@ import IconThumbsODown from 'react-icons/lib/fa/thumbs-o-down'
 import IconThumbsUp from 'react-icons/lib/fa/thumbs-up'
 import IconThumbsOUp from 'react-icons/lib/fa/thumbs-o-up'
 
-class PostCommandBar extends Component { 
+import { connect } from 'react-redux';
+import * as PostActions from '../actions/PostActions';
 
+
+class PostCommandBar extends Component { 
+    
     constructor(props) {
-        super(props);    
+        super(props);   
+    
     }
 
     componentDidMount() {
         this.setState( {
             ...this.props,
-        })        
+        })      
     }
 
-    toggleVoteUp = () => {
-        this.setState ({
-            voteScore : this.state.voteScore + 1
-        })
+    toggleVoteUp = () => {        
+        this.props.votePost(this.props.id, 'upVote');        
     }
     
     toggleVoteDown = () => {
-        this.setState ({
-            voteScore : this.state.voteScore - 1
-        })
+        this.props.votePost(this.props.id, 'downVote');   
     }    
 
     render() {
@@ -42,7 +43,7 @@ class PostCommandBar extends Component {
                             <IconThumbsOUp size={18} />
                             </Button>
                             <Button className='without-h-padding'  bsStyle="link"> 
-                            &nbsp;{this.state.voteScore}&nbsp;
+                            &nbsp;{this.props.voteScore}&nbsp;
                             </Button>
                             <Button className='without-h-padding' bsStyle="link" onClick={this.toggleVoteDown}> 
                             <IconThumbsODown size={18} /> 
@@ -68,4 +69,15 @@ class PostCommandBar extends Component {
     }
 }
 
-export default PostCommandBar;
+const mapStateToProps = (state) => {
+    return state;
+}
+  
+const mapDispatchToProps = (dispatch) => {
+    return {
+        votePost: (id, option) => dispatch(PostActions.votePost(id, option))
+    }
+};
+  
+export default connect(mapStateToProps, mapDispatchToProps )(PostCommandBar)
+

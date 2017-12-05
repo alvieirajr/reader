@@ -46,7 +46,7 @@ class Post extends Component {
    
               <PostBody {...this.props} />            
               <PostSummary {...this.props} />                              
-                
+              {this.props.showComments == true ? <PostComment/> : ''}   
           </ListGroup>          
 
         );

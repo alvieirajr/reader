@@ -10,22 +10,20 @@ import IconThumbsOUp from 'react-icons/lib/fa/thumbs-o-up'
 
 import { connect } from 'react-redux';
 import * as PostActions from '../actions/PostActions';
+import { fetchComments } from '../actions/PostActions';
 
 
 class PostCommandBar extends Component { 
     
     constructor(props) {
-        super(props);   
-    
+        super(props);       
     }
 
     componentDidMount() {
-        this.setState( {
-            ...this.props,
-        })      
     }
 
-    toggleVoteUp = () => {        
+    toggleVoteUp = () => {    
+        console.log(this.state)            
         this.props.votePost(this.props.id, 'upVote');        
     }
     
@@ -33,8 +31,13 @@ class PostCommandBar extends Component {
         this.props.votePost(this.props.id, 'downVote');   
     }    
 
+    showComments = (post_id) => {
+        this.props.fetchComments(this.props.id);
+        console.log(this);
+    }
+
     render() {
-        if (this.state) {
+        
             return (
             <div>               
                 <Col xs={4} >
@@ -52,7 +55,7 @@ class PostCommandBar extends Component {
                 </Col>                
                 <Col xs={4} className='' >
                     <ButtonToolbar>
-                        <Button className='' bsStyle="link"><CommentIcon size={18} /> Comments </Button>
+                        <Button className='' bsStyle="link" onClick={() => this.showComments(this.props.id)}><CommentIcon size={18} /> Comments </Button>
                     </ButtonToolbar>                
                 </Col>
                 <Col xs={4} className=''>        
@@ -61,11 +64,7 @@ class PostCommandBar extends Component {
                     </ButtonToolbar>
                 </Col>      
             </div>)
-        } else { 
-            return (
-                <div></div>
-            )
-        }                
+        
     }
 }
 
@@ -75,9 +74,12 @@ const mapStateToProps = (state) => {
   
 const mapDispatchToProps = (dispatch) => {
     return {
-        votePost: (id, option) => dispatch(PostActions.votePost(id, option))
+        votePost: (id, option) => dispatch(PostActions.votePost(id, option)),
+        fetchComments : (id) => dispatch(PostActions.fetchComments(id))
     }
 };
   
 export default connect(mapStateToProps, mapDispatchToProps )(PostCommandBar)
+
+//export default PostCommandBar;
 

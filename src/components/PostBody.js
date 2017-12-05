@@ -30,6 +30,7 @@ function PostBody(props) {
             <Row>
               <PostCommandBar {...props}/>
             </Row>
+       
           </ListGroupItem>    
         )
 

@@ -25,9 +25,12 @@ function PostComment(props) {
                
                 <ListGroupItem className='text-left small-padding-bottom bg-gray'>
                     <Row>
-                        <Col xs={12} >
+                        <Col xs={10} >
                             <p><b>{props.author}</b> &#183; Há 1h</p>
                         </Col>     
+                        <Col xs={2}>
+                        <Button className='edit-link' bsStyle="link"><EditIcon size={21} /></Button>
+                    </Col>                           
                     </Row>  
                     <Row>
                         <Col xs={12} >
@@ -38,9 +41,7 @@ function PostComment(props) {
                     <hr className='half-rule' />
                 </Col>
                    <Row>                                                       
-                        <Col xs={2}>
-                            <Button className='edit-link' bsStyle="link"><EditIcon size={21} /></Button>
-                        </Col>                
+                               
                     </Row>
                     <Row>
                         <PostCommandBar/>                                

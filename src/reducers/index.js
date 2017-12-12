@@ -9,6 +9,8 @@ export default (state = { posts : []}, action) => {
         return {
           posts : state.posts.map(post => {
             if (post.id === action.post.id) { 
+              action.post.comments = post.comments;
+              action.post.showComments = post.showComments;              
               return action.post
             } else {
               return post

@@ -20,9 +20,6 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      posts : []
-    }
   }
 
 
@@ -33,14 +30,15 @@ componentDidMount() {
 }
 
   render() {
-    
+    console.log(this.props);
     return (      
+      
       <div className="App">        
         <Row>
           <Col xs={3} md={4} />
           <Col xs={6} md={4}>
             {this.props.posts.map((item) => 
-              <Post {...item}/>
+              <Post {...item} />
             )}                      
           </Col>
           <Col xs={1} md={4} />
@@ -51,9 +49,7 @@ componentDidMount() {
 }
 
 const mapStateToProps = (state) => {  
-  return {
-      posts: state.posts
-  }
+  return state;
 }
 
 const mapDispatchToProps = (dispatch) => {

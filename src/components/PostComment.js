@@ -19,29 +19,36 @@ import PostCommandBar from './PostCommandBar'
 
 import InputText from './InputText'
 
-class PostComment extends Component { 
-    render () {
+function PostComment(props) {
+        
         return (
-            <ListGroupItem className='text-left small-padding-bottom bg-gray'>
-                <Row>
-                    <Col xs={10} >
-                        <b>Paulo Figueira</b> &#183; Há 1h &#183; Conteudo do comentario fica aqui fdsfdsfsdfdsfmdsmfnsdm,fnds,mfnds,mfns,dmfn,mn                
-                    </Col>
-                    <Col xs={2}>
-                        <Button className='edit-link' bsStyle="link"><EditIcon size={21} /></Button>
-                    </Col>                
-                </Row>
-                <Row>
-                    <PostCommandBar/>                                
-                </Row>
-
-                
-              
-              
-            </ListGroupItem>
+               
+                <ListGroupItem className='text-left small-padding-bottom bg-gray'>
+                    <Row>
+                        <Col xs={12} >
+                            <p><b>{props.author}</b> &#183; Há 1h</p>
+                        </Col>     
+                    </Row>  
+                    <Row>
+                        <Col xs={12} >
+                            {props.body}   
+                        </Col>
+                    </Row> 
+                    <Col xs={12} className='without-lateral-padding'>
+                    <hr className='half-rule' />
+                </Col>
+                   <Row>                                                       
+                        <Col xs={2}>
+                            <Button className='edit-link' bsStyle="link"><EditIcon size={21} /></Button>
+                        </Col>                
+                    </Row>
+                    <Row>
+                        <PostCommandBar/>                                
+                    </Row>                                  
+                </ListGroupItem>
+      
             
         )
-    }
 }
 
 

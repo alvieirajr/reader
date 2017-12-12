@@ -22,8 +22,7 @@ class PostCommandBar extends Component {
     componentDidMount() {
     }
 
-    toggleVoteUp = () => {    
-        console.log(this.state)            
+    toggleVoteUp = () => {             
         this.props.votePost(this.props.id, 'upVote');        
     }
     
@@ -33,11 +32,11 @@ class PostCommandBar extends Component {
 
     showComments = (post_id) => {
         this.props.fetchComments(this.props.id);
-        console.log(this);
+       // console.log(this);
     }
 
     render() {
-        
+        console.log(this.props);
             return (
             <div>               
                 <Col xs={4} >
@@ -69,7 +68,10 @@ class PostCommandBar extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return state;
+    console.log('1');
+    return {
+        a : 1
+    }//state.comments;
 }
   
 const mapDispatchToProps = (dispatch) => {
@@ -80,6 +82,7 @@ const mapDispatchToProps = (dispatch) => {
 };
   
 export default connect(mapStateToProps, mapDispatchToProps )(PostCommandBar)
+
 
 //export default PostCommandBar;
 

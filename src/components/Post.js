@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Badge, Button, ButtonToolbar, Col, Row, ListGroup, ListGroupItem } from 'react-bootstrap';
+import { Badge, Button, ButtonToolbar, Col, Row, ListGroup, ListGroupItem, Panel } from 'react-bootstrap';
 
 import HeartFullIcon from 'react-icons/lib/ti/heart-full-outline'
 import HeartOutline from 'react-icons/lib/ti/heart-outline'
@@ -18,39 +18,25 @@ import IconThumbsUp from 'react-icons/lib/fa/thumbs-up'
 import IconThumbsOUp from 'react-icons/lib/fa/thumbs-o-up'
 import { connect } from 'react-redux';
 
-class Post extends Component {
-  constructor(props) {
-    super(props);
+function Post(props)  {
+  
 
-    this.state = {
-      posts : []
-    }
-  }
-/*
-  state = {
-    timestamp : 'Há 9h',
-    title : 'O que eu penso sobre isso?',
-    body : 'klajsdklas jdlka sjdklajsdjlkjlk alskdjaklsj aksldjl aksd aklsjkjas alskj',
-    author : 'Thiago Antunes',
-    category: 'science',    
-    voteScore : -2,
-    commentCount : 0,
-    vote : -1,
-    canIRemove : false,    
-  }
-*/
-    render() {
-//console.log(this)
+      
         return(
-            <ListGroup>              
-   
-              <PostBody {...this.props} />            
-              <PostSummary {...this.props} />                              
-              {this.props.showComments == true ? <PostComment/> : ''}   
-          </ListGroup>          
+          <div>
+            <ListGroup>  
+            <PostBody {...props} />
+            <PostSummary {...props} />                              
+            {props.showComments === true ? props.comments.map(item => {             
+             return <PostComment {...item} />
+            }) : <p>s</p>}   
+             
+            
+            </ListGroup>
+            </div>          
 
         );
-    }
+    
 } 
 
 export default Post;

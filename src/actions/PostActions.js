@@ -25,6 +25,8 @@ export const fetchPostsSuccess = (posts) => {
 }
 
 export const fetchCommentsSuccess = (comments, from) => {
+    //console.log(comments)
+    //console.log(from);
     return {
         type : 'FETCH_COMMENTS',
         comments : comments,

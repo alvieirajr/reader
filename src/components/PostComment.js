@@ -12,12 +12,10 @@ import IconThumbsODown from 'react-icons/lib/fa/thumbs-o-down'
 import IconThumbsUp from 'react-icons/lib/fa/thumbs-up'
 import IconThumbsOUp from 'react-icons/lib/fa/thumbs-o-up'
 
-
 import PostCommandBar from './PostCommandBar'
 
-
-
 import InputText from './InputText'
+import { voteComment } from '../actions/PostActions';
 
 function PostComment(props) {
         
@@ -44,7 +42,7 @@ function PostComment(props) {
                                
                     </Row>
                     <Row>
-                        <PostCommandBar/>                                
+                        <PostCommandBar id={props.id} voteScore={props.voteScore} voteHandle = {props.voteComment}/>
                     </Row>                                  
                 </ListGroupItem>
       

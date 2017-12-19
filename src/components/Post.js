@@ -19,36 +19,18 @@ import IconThumbsOUp from 'react-icons/lib/fa/thumbs-o-up'
 import { connect } from 'react-redux';
 
 function Post(props)  {
-  
-
-      
-        return(
-          <div>
-            <ListGroup>  
-            <PostBody {...props} />
-            <PostSummary {...props} />                              
-            {props.showComments === true ? props.comments.map(item => {             
-             return <PostComment {...item} />
-            }) : <p>s</p>}   
-             
-            
-            </ListGroup>
-            </div>          
-
-        );
-    
+    console.log(props);
+    return(
+        <div>   
+        <ListGroup>  
+        <PostBody {...props} />
+        <PostSummary {...props} />                              
+        {props.showComments === true ? props.comments.map(item => {             
+            return <PostComment {...item} voteComment={props.voteComment} />
+        }) : <p>s</p>}
+        </ListGroup>
+        </div>    
+    );
 } 
 
 export default Post;
-
-/*
-const mapStateToProps = (state) => {
-  console.log(state)
-  return {
-      posts: state.posts
-  }
-}
-
-
-export default connect(mapStateToProps)(Post)
-*/

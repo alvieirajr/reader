@@ -30,15 +30,17 @@ componentDidMount() {
 }
 
   render() {
-    console.log(this.props);
-    return (      
-      
+    return (           
       <div className="App">        
         <Row>
           <Col xs={3} md={4} />
           <Col xs={6} md={4}>
             {this.props.posts.map((item) => 
-              <Post {...item} />
+              <Post {...item} 
+              votePost={this.props.votePost}
+              fetchComments={this.props.fetchComments}
+              voteComment={this.props.voteComment}
+               />
             )}                      
           </Col>
           <Col xs={1} md={4} />
@@ -54,7 +56,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchPosts: (posts) => dispatch(PostActions.fetchPosts())
+    fetchPosts: (posts) => dispatch(PostActions.fetchPosts()),
+    votePost: (id, option) => dispatch(PostActions.votePost(id, option)),
+    fetchComments : (id) => dispatch(PostActions.fetchComments(id)),
+    voteComment: (id, option) => dispatch(PostActions.voteComment(id, option))
   }
 };
 

@@ -41,6 +41,13 @@ export const votePostSuccess = (post) => {
     }
 }
 
+export const voteCommentSuccess = (post) => {
+    return {
+        type : 'VOTE_COMMENT_SUCCESS',
+        post : post
+    }
+}
+
 export const fetchPosts = () => {
     return (dispatch) => {
         Axios.get(URL_FETCH_POSTS,  { headers })
@@ -66,10 +73,24 @@ export const fetchComments = (id) => {
 }
 
 export const votePost = (id, option) => {
+    console.log(id)
+    console.log(option)
     return (dispatch) => {
         Axios.post(`${api}` + '/posts/' + id, { option }, { headers })
             .then(response => {                
                 dispatch(votePostSuccess(response.data));
+            })
+            .catch(error => {
+                throw(error);
+            })
+    }
+}
+
+export const voteComment = (id, option) => {
+    return (dispatch) => {
+        Axios.post(`${api}` + '/comments/' + id, { option }, { headers })
+            .then(response => {                
+                dispatch(voteCommentSuccess(response.data));
             })
             .catch(error => {
                 throw(error);

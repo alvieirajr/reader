@@ -17,8 +17,20 @@ export default (state = { posts : []}, action) => {
             }
           })
         }  
-      }
-
+      } 
+      case 'VOTE_COMMENT_SUCCESS' : {
+        return {
+          posts : state.posts.map(post => {
+            if (post.id === action.post.id) { 
+              action.post.comments = post.comments;
+              action.post.showComments = post.showComments;              
+              return action.post
+            } else {
+              return post
+            }
+          })
+        }  
+      }  
       case 'FETCH_COMMENTS' : {
         console.log(action)        
         return {

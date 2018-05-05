@@ -41,10 +41,10 @@ export const votePostSuccess = (post) => {
     }
 }
 
-export const voteCommentSuccess = (post) => {
+export const voteCommentSuccess = (comment) => {
     return {
         type : 'VOTE_COMMENT_SUCCESS',
-        post : post
+        comment : comment
     }
 }
 

@@ -17,22 +17,32 @@ export default (state = { posts : []}, action) => {
             }
           })
         }  
-      } 
+      }       
       case 'VOTE_COMMENT_SUCCESS' : {
-        return {
-          posts : state.posts.map(post => {
-            if (post.id === action.post.id) { 
-              action.post.comments = post.comments;
-              action.post.showComments = post.showComments;              
-              return action.post
+          let posts = state.posts.map(post => {
+            if (typeof post.comments !== 'undefined') {            
+             post.comments = post.comments.map(comment => {
+                if (comment.id === action.comment.id) {
+                  return action.comment;                
+                } else {
+                  return comment
+                }
+              })
+              return post;
             } else {
-              return post
+              return post;
             }
           })
-        }  
+
+          posts.showComments = true;
+
+          return {
+            posts : posts
+          }
+
       }  
       case 'FETCH_COMMENTS' : {
-        console.log(action)        
+       // console.log(action)        
         return {
           posts : state.posts.map(post => {
             if (post.id === action.from) {       

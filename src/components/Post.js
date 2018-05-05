@@ -19,7 +19,7 @@ import IconThumbsOUp from 'react-icons/lib/fa/thumbs-o-up'
 import { connect } from 'react-redux';
 
 function Post(props)  {
-    console.log(props);
+   // console.log(props);
     return(
         <div>   
         <ListGroup>  

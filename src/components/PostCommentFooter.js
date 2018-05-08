@@ -13,7 +13,7 @@ import * as PostActions from '../actions/PostActions';
 import { fetchComments } from '../actions/PostActions';
 
 
-class PostCommandBar extends Component { 
+class PostCommentFooter extends Component { 
     
     constructor(props) {
         super(props);       
@@ -23,17 +23,12 @@ class PostCommandBar extends Component {
     }
 
     toggleVoteUp = () => {             
-        this.props.votePost(this.props.id, 'upVote');        
+        this.props.voteComment(this.props.id, 'upVote');        
     }
     
     toggleVoteDown = () => {
-        this.props.votePost(this.props.id, 'downVote');   
+        this.props.voteComment(this.props.id, 'downVote');   
     }    
-
-    showComments = (post_id) => {
-        this.props.fetchComments(this.props.id);
-       // console.log(this);
-    }
 
     render() {
      //   console.log(this.props);
@@ -53,9 +48,6 @@ class PostCommandBar extends Component {
                     </ButtonToolbar>
                 </Col>                
                 <Col xs={4} className='' >
-                    <ButtonToolbar>
-                        <Button className='' bsStyle="link" onClick={() => this.showComments(this.props.id)}><CommentIcon size={18} /> Comments </Button>
-                    </ButtonToolbar>                
                 </Col>
                 <Col xs={4} className=''>        
                     <ButtonToolbar>
@@ -68,23 +60,5 @@ class PostCommandBar extends Component {
     }
 }
 
-/*
-const mapStateToProps = (state) => {
- //   console.log('1');
-    return {
-        a : 1
-    }//state.comments;
-}
-  
-const mapDispatchToProps = (dispatch) => {
-    return {
-        votePost: (id, option) => dispatch(PostActions.votePost(id, option)),
-        fetchComments : (id) => dispatch(PostActions.fetchComments(id))
-    }
-};
-*/  
-//export default connect(mapStateToProps, mapDispatchToProps )(PostCommandBar)
-
-
-export default PostCommandBar;
+export default PostCommentFooter;
 

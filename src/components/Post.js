@@ -27,7 +27,7 @@ function Post(props)  {
         <PostSummary {...props} />                              
         {props.showComments === true ? props.comments.map(item => {             
             return <PostComment {...item} voteComment={props.voteComment} />
-        }) : <p>s</p>}
+        }) : ''}
         </ListGroup>
         </div>    
     );

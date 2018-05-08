@@ -17,6 +17,8 @@ import PostCommandBar from './PostCommandBar'
 import InputText from './InputText'
 import { voteComment } from '../actions/PostActions';
 
+import PostCommentFooter from './PostCommentFooter'
+
 function PostComment(props) {
         
         return (
@@ -42,7 +44,7 @@ function PostComment(props) {
                                
                     </Row>
                     <Row>
-                        <PostCommandBar id={props.id} voteScore={props.voteScore} voteHandle = {props.voteComment}/>
+                        <PostCommentFooter id={props.id} voteScore={props.voteScore} voteComment = {props.voteComment}/>
                     </Row>                                  
                 </ListGroupItem>
       

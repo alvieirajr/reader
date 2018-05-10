@@ -7,7 +7,7 @@ import CommentIcon from 'react-icons/lib/ti/messages'
 import TrashIcon from 'react-icons/lib/ti/trash'
 import EditIcon from 'react-icons/lib/ti/pencil'
 
-import PostBody from './PostBody'
+import PostContentWithoutBody from './PostContentWithoutBody'
 import InputText from './InputText'
 import PostComment from './PostComment'
 import PostSummary from './PostSummary'
@@ -23,7 +23,7 @@ function Post(props)  {
     return(
         <div>   
         <ListGroup>  
-        <PostBody {...props} />
+        <PostContentWithoutBody {...props} />
         <PostSummary {...props} />                              
         {props.showComments === true ? props.comments.map(item => {             
             return <PostComment {...item} voteComment={props.voteComment} />

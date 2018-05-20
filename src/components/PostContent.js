@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Label, Badge, Button, ButtonToolbar, Col, Row, ListGroup, ListGroupItem } from 'react-bootstrap';
 import EditIcon from 'react-icons/lib/ti/pencil'
-import PostCommandBar from './PostCommandBar'
+import {PostCommandBar} from './PostCommandBar'
 
 function PostContent(props) {
         return(            

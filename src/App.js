@@ -1,67 +1,23 @@
-import React, { Component } from 'react';
 import './App.css';
-import { FormControl, FormGroup, Glyphicon, Button, ButtonToolbar, ButtonGroup, ListGroup, ListGroupItem, Label, Col, Row, Panel, Nav, NavItem, MenuItem, NavDropdown, Navbar } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
-import Heart from 'react-icons/lib/ti/heart'
-import HeartFullIcon from 'react-icons/lib/ti/heart-full-outline'
-import HeartOutline from 'react-icons/lib/ti/heart-outline'
-import Comment from 'react-icons/lib/ti/messages'
-import TrashIcon from 'react-icons/lib/fa/trash-o'
-import EditIcon from 'react-icons/lib/ti/pencil'
-import { connect } from 'react-redux';
-import Post from './components/Post'
-import * as PostAPI from './util/PostAPI'
-import * as PostActions from './actions/PostActions';
-import configureStore from './store/configureStore';
+import React from 'react';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import AllPosts from './components/AllPosts';
+import PostDetails from './components/PostDetails';
 
-class App extends Component {
+const App = ({ store }) => (
+  <Provider store={store}>
+    <Router>
+      <Switch>
+        <Route path="/" component={AllPosts} />
+        <Route path="/:category/:post_id" component={PostDetails} />
+        <Route render={() => <h1>Page not found</h1>} />
+      </Switch>
+    </Router>
 
-  constructor(props) {
-    super(props);
+  </Provider>
+);
 
-  }
-
-
-componentDidMount() {
-  
-  this.props.fetchPosts();
- 
-}
-
-  render() {
-    return (           
-      <div className="App">        
-        <Row>
-          <Col xs={3} md={4} />
-          <Col xs={6} md={4}>
-            {this.props.posts.map((item) => 
-              <Post {...item} 
-              votePost={this.props.votePost}
-              fetchComments={this.props.fetchComments}
-              voteComment={this.props.voteComment}
-               />
-            )}                      
-          </Col>
-          <Col xs={1} md={4} />
-        </Row>
-      </div>
-    );
-  }
-}
-
-const mapStateToProps = (state) => {  
-  return state;
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchPosts: (posts) => dispatch(PostActions.fetchPosts()),
-    votePost: (id, option) => dispatch(PostActions.votePost(id, option)),
-    fetchComments : (id) => dispatch(PostActions.fetchComments(id)),
-    voteComment: (id, option) => dispatch(PostActions.voteComment(id, option))
-  }
-};
-
-
-export default connect(mapStateToProps, mapDispatchToProps )(App)
+export default App;

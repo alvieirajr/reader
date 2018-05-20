@@ -4,38 +4,37 @@ import { FormControl, FormGroup, Glyphicon, Button, ButtonToolbar, ButtonGroup, 
 
 import { connect } from 'react-redux';
 import Post from '../components/Post'
-import * as PostAPI from '../util/PostAPI'
+//import * as PostAPI from '../util/PostAPI'
 import * as PostActions from '../actions/PostActions';
 import configureStore from '../store/configureStore';
 
 class PostDetails extends Component {
 
   constructor(props) {
+    
     super(props);
 
   }
 
 
 componentDidMount() {
-
-  //this.props.fetchPosts();
-
+  console.log(this.props);
+  this.props.fetchPost(this.props.match.params.post_id);
 }
 
   render() {
+    console.log(this.props)
 
     return (
       <div>      
           <Row>
             <Col xs={3} md={4} />
             <Col xs={6} md={4}>
-              {this.props.posts.map((item) =>
-                <Post {...item}
-                  votePost={this.props.votePost}
-                  fetchComments={this.props.fetchComments}
-                  voteComment={this.props.voteComment}
-                />
-              )}
+              { this.props.post !== undefined ? 
+                <Post {...this.props.post}
+                votePost={this.props.post.votePost}
+                fetchComments={this.props.post.fetchComments}
+                voteComment={this.props.post.voteComment} /> : "" }
             </Col>
             <Col xs={1} md={4} />
           </Row>
@@ -45,13 +44,12 @@ componentDidMount() {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
-    return state;
+  return state;
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchPosts: (posts) => dispatch(PostActions.fetchPosts()),
+    fetchPost: (id) => dispatch(PostActions.fetchPost(id)),
     votePost: (id, option) => dispatch(PostActions.votePost(id, option)),
     fetchComments : (id) => dispatch(PostActions.fetchComments(id)),
     voteComment: (id, option) => dispatch(PostActions.voteComment(id, option))

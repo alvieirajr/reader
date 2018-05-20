@@ -55,6 +55,13 @@ export default (state = { posts : []}, action) => {
           })
         }          
       }
+
+      case 'FETCH_POST_SUCCESS' : {
+        console.log(action);
+        return { 
+          post : action.post
+        }
+      }
       default:
             return state;
     }

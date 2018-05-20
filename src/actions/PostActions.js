@@ -4,6 +4,7 @@ const api = "http://localhost:3001"
 const URL_BASE  = `${api}`;
 
 const URL_FETCH_POSTS  = `${api}/posts`;
+const URL_FETCH_POST = `${api}/posts:id`;
 const URL_VOTE_POST = `${api}/posts/:id`;
 const URL_FETCH_COMMENTS = '';
 
@@ -50,6 +51,13 @@ export const fetchCommentsSuccess = (comments, from) => {
 export const votePostSuccess = (post) => {
     return {
         type : 'VOTE_POST_SUCCESS',
+        post : post
+    }
+}
+
+export const fetchPostSuccess = (post) => {
+    return {
+        type : 'FETCH_POST_SUCCESS',
         post : post
     }
 }
@@ -104,6 +112,18 @@ export const voteComment = (id, option) => {
         Axios.post(`${api}` + '/comments/' + id, { option }, { headers })
             .then(response => {                
                 dispatch(voteCommentSuccess(response.data));
+            })
+            .catch(error => {
+                throw(error);
+            })
+    }
+}
+
+export const fetchPost = (id) => {    
+    return (dispatch) => {
+        Axios.get(`${api}` + '/posts/' + id, { headers })
+            .then(response => {                
+                dispatch(fetchPostSuccess(response.data));
             })
             .catch(error => {
                 throw(error);

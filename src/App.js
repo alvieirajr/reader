@@ -11,8 +11,8 @@ const App = ({ store }) => (
   <Provider store={store}>
     <Router>
       <Switch>
-        <Route path="/" component={AllPosts} />
-        <Route path="/:category/:post_id" component={PostDetails} />
+        <Route exact path="/" component={AllPosts} />
+        <Route exact path="/:category/:post_id" component={PostDetails} />
         <Route render={() => <h1>Page not found</h1>} />
       </Switch>
     </Router>

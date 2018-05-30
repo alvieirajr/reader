@@ -68,23 +68,5 @@ class PostCommandBar extends Component {
     }
 }
 
-/*
-const mapStateToProps = (state) => {
- //   console.log('1');
-    return {
-        a : 1
-    }//state.comments;
-}
-  
-const mapDispatchToProps = (dispatch) => {
-    return {
-        votePost: (id, option) => dispatch(PostActions.votePost(id, option)),
-        fetchComments : (id) => dispatch(PostActions.fetchComments(id))
-    }
-};
-*/  
-//export default connect(mapStateToProps, mapDispatchToProps )(PostCommandBar)
-
-
 export default PostCommandBar;
 

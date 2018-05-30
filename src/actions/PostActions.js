@@ -31,7 +31,8 @@ export const timeConverter = (UNIX_timestamp) =>{
     return time;
   }
 
-export const fetchPostsSuccess = (posts) => {
+export const fetchPostsSuccess = (posts) => {    
+    console.log(posts);
     return {
         type : 'FETCH_POSTS_SUCCESS',
         posts : posts
@@ -49,16 +50,17 @@ export const fetchCommentsSuccess = (comments, from) => {
 }
 
 export const votePostSuccess = (post) => {
+
     return {
         type : 'VOTE_POST_SUCCESS',
-        post : post
+        post : post 
     }
 }
 
 export const fetchPostSuccess = (post) => {
     return {
         type : 'FETCH_POST_SUCCESS',
-        post : post
+        posts : new Array(post)
     }
 }
 
@@ -94,8 +96,6 @@ export const fetchComments = (id) => {
 }
 
 export const votePost = (id, option) => {
-    console.log(id)
-    console.log(option)
     return (dispatch) => {
         Axios.post(`${api}` + '/posts/' + id, { option }, { headers })
             .then(response => {                

@@ -7,7 +7,7 @@ import CommentIcon from 'react-icons/lib/ti/messages'
 import TrashIcon from 'react-icons/lib/ti/trash'
 import EditIcon from 'react-icons/lib/ti/pencil'
 
-import PostContentWithoutBody from './PostContentWithoutBody'
+import PostContent from './PostContent';
 import InputText from './InputText'
 import PostComment from './PostComment'
 import PostSummary from './PostSummary'
@@ -19,11 +19,11 @@ import IconThumbsOUp from 'react-icons/lib/fa/thumbs-o-up'
 import { connect } from 'react-redux';
 
 function Post(props)  {
-   // console.log(props);
+    console.log(props);
     return(
         <div>   
         <ListGroup>  
-        <PostContentWithoutBody {...props} />
+        <PostContent {...props} />
         <PostSummary {...props} />                              
         {props.showComments === true ? props.comments.map(item => {             
             return <PostComment {...item} voteComment={props.voteComment} />

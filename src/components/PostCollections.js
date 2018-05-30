@@ -8,7 +8,7 @@ import * as PostAPI from '../util/PostAPI'
 import * as PostActions from '../actions/PostActions';
 import configureStore from '../store/configureStore';
 
-class AllPosts extends Component {
+class PostCollections extends Component {
 
   constructor(props) {
     super(props);
@@ -17,12 +17,21 @@ class AllPosts extends Component {
 
 
 componentDidMount() {
+  console.log(this.props)
 
-  this.props.fetchPosts();
+  // In case to show all posts.
+  if (Object.keys(this.props.match.params).length === 0) {
+    this.props.fetchPosts();
+    this.showBody = false;
+  } else {
+    this.props.fetchPost(this.props.match.params.post_id);
+    this.showBody = true;
+  }
 
 }
 
   render() {
+    console.log(this.props)
     return (
       <div>      
           <Row>
@@ -30,6 +39,7 @@ componentDidMount() {
             <Col xs={6} md={4}>
               {this.props.posts.map((item) =>
                 <Post {...item}
+                  showBody={this.showBody}
                   votePost={this.props.votePost}
                   fetchComments={this.props.fetchComments}
                   voteComment={this.props.voteComment}
@@ -50,6 +60,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchPosts: (posts) => dispatch(PostActions.fetchPosts()),
+    fetchPost: (id) => dispatch(PostActions.fetchPost(id)),    
     votePost: (id, option) => dispatch(PostActions.votePost(id, option)),
     fetchComments : (id) => dispatch(PostActions.fetchComments(id)),
     voteComment: (id, option) => dispatch(PostActions.voteComment(id, option))
@@ -57,4 +68,4 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps )(AllPosts)
+export default connect(mapStateToProps, mapDispatchToProps )(PostCollections)

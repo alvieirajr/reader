@@ -6,6 +6,11 @@ export default (state = { posts : []}, action) => {
         };
       }
       case 'VOTE_POST_SUCCESS' : {
+        console.log(action);
+        console.log(state.post);
+        //console.log({posts : new Array(state)});
+
+        //let temp = state.post !== undefined ? {posts : new Array(state)} : state.posts;
         return {
           posts : state.posts.map(post => {
             if (post.id === action.post.id) { 
@@ -17,7 +22,7 @@ export default (state = { posts : []}, action) => {
             }
           })
         }  
-      }       
+      }             
       case 'VOTE_COMMENT_SUCCESS' : {
           let posts = state.posts.map(post => {
             if (typeof post.comments !== 'undefined') {            
@@ -59,7 +64,7 @@ export default (state = { posts : []}, action) => {
       case 'FETCH_POST_SUCCESS' : {
         console.log(action);
         return { 
-          post : action.post
+          posts : action.posts
         }
       }
       default:

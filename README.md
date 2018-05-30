@@ -2230,7 +2230,18 @@ If you have ideas for more “How To” recipes that should be on this page, [le
 
 
 
-
+        return {
+          posts : state.posts.map(post => {
+            if (post.id === action.post.id) { 
+              action.post.comments = post.comments;
+              action.post.showComments = post.showComments;              
+              return action.post
+            } else {
+              return post
+            }
+          })
+        }  
+      }   
 
 <Router path="/:category/:post_id" component={PostDetail}/>
         <Router path="/:category" component={Category}/>        

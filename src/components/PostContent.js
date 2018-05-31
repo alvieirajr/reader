@@ -9,7 +9,7 @@ function PostContent(props) {
             <ListGroupItem className='text-left without-padding-bottom'>
               <Row>
                 <Col xs={10}>
-                {props.showBody == false? <a href={`/${props.category}/${props.id}`} ><h5><b>{props.title}</b></h5></a> :  
+                {props.showBody == false ? <a href={`/${props.category}/${props.id}`} ><h5><b>{props.title}</b></h5></a> :  
                 <h5><b>{props.title}</b></h5>
                 }
                   <p>{props.author} &#183; {props.timestamp} &#183; <Label  bsStyle='primary'>{props.category}</Label></p>

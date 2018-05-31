@@ -3,12 +3,12 @@ import React, { Component } from 'react';
 import { FormControl, FormGroup, Glyphicon, Button, ButtonToolbar, ButtonGroup, ListGroup, ListGroupItem, Label, Col, Row, Panel, Nav, NavItem, MenuItem, NavDropdown, Navbar } from 'react-bootstrap';
 
 import { connect } from 'react-redux';
-import Post from '../components/Post'
+import PostItem from '../components/PostItem'
 import * as PostAPI from '../util/PostAPI'
 import * as PostActions from '../actions/PostActions';
 import configureStore from '../store/configureStore';
 
-class PostCollections extends Component {
+class PostList extends Component {
 
   constructor(props) {
     super(props);
@@ -20,13 +20,8 @@ componentDidMount() {
   console.log(this.props)
 
   // In case to show all posts.
-  if (Object.keys(this.props.match.params).length === 0) {
     this.props.fetchPosts();
     this.showBody = false;
-  } else {
-    this.props.fetchPost(this.props.match.params.post_id);
-    this.showBody = true;
-  }
 
 }
 
@@ -38,7 +33,7 @@ componentDidMount() {
             <Col xs={3} md={4} />
             <Col xs={6} md={4}>
               {this.props.posts.map((item) =>
-                <Post {...item}
+                <PostItem {...item}
                   showBody={this.showBody}
                   votePost={this.props.votePost}
                   fetchComments={this.props.fetchComments}
@@ -68,4 +63,4 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps )(PostCollections)
+export default connect(mapStateToProps, mapDispatchToProps )(PostList)

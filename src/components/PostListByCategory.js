@@ -8,7 +8,7 @@ import * as PostAPI from '../util/PostAPI'
 import * as PostActions from '../actions/PostActions';
 import configureStore from '../store/configureStore';
 
-class Post extends Component {
+class PostListByCategory extends Component {
 
   constructor(props) {
     super(props);
@@ -19,8 +19,9 @@ class Post extends Component {
 componentDidMount() {
   console.log(this.props)
 
-    this.props.fetchPost(this.props.match.params.post_id);
-    this.showBody = true;
+  // In case to show all posts.
+    this.props.fetchPostsByCategory(this.props.match.params.category);
+    this.showBody = false;
 
 }
 
@@ -53,8 +54,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchPosts: (posts) => dispatch(PostActions.fetchPosts()),
-    fetchPost: (id) => dispatch(PostActions.fetchPost(id)),    
+    fetchPostsByCategory: (category) => dispatch(PostActions.fetchPostsByCategory(category)),
     votePost: (id, option) => dispatch(PostActions.votePost(id, option)),
     fetchComments : (id) => dispatch(PostActions.fetchComments(id)),
     voteComment: (id, option) => dispatch(PostActions.voteComment(id, option))
@@ -62,4 +62,4 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps )(Post)
+export default connect(mapStateToProps, mapDispatchToProps )(PostListByCategory)

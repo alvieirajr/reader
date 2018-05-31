@@ -130,3 +130,15 @@ export const fetchPost = (id) => {
             })
     }
 }
+
+export const fetchPostsByCategory = (category) => {
+    return (dispatch) => {
+        Axios.get(`${api}` + '/' + category + '/posts', { headers })
+            .then(response => {                
+                dispatch(fetchPostsSuccess(response.data));                
+            })
+            .catch(error => {
+                throw(error);
+            })
+    }
+}

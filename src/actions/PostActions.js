@@ -10,6 +10,9 @@ const URL_FETCH_COMMENTS = '';
 
 let token = localStorage.token
 
+export const RETURN_404 = -1;
+export const RETURN_OK = 1;
+
 if (!token) {
   token = localStorage.token = Math.random().toString(36).substr(-8)
 }
@@ -35,7 +38,8 @@ export const fetchPostsSuccess = (posts) => {
     console.log(posts);
     return {
         type : 'FETCH_POSTS_SUCCESS',
-        posts : posts
+        posts : posts,
+        status : RETURN_OK
     }
 }
 
@@ -45,7 +49,8 @@ export const fetchCommentsSuccess = (comments, from) => {
     return {
         type : 'FETCH_COMMENTS',
         comments : comments,
-        from : from
+        from : from,
+        status : RETURN_OK
     }
 }
 
@@ -53,21 +58,31 @@ export const votePostSuccess = (post) => {
 
     return {
         type : 'VOTE_POST_SUCCESS',
-        post : post 
+        post : post,
+        status : RETURN_OK 
     }
 }
 
 export const fetchPostSuccess = (post) => {
     return {
         type : 'FETCH_POST_SUCCESS',
-        posts : new Array(post)
+        posts : new Array(post),
+        status : RETURN_OK
+    }
+}
+
+export const fetchPostUnccess = (post) => {
+    return {
+        type : 'FETCH_POST_UNSUCCESS',
+        status : RETURN_404
     }
 }
 
 export const voteCommentSuccess = (comment) => {
     return {
         type : 'VOTE_COMMENT_SUCCESS',
-        comment : comment
+        comment : comment,
+        status : RETURN_OK
     }
 }
 
@@ -126,7 +141,8 @@ export const fetchPost = (id) => {
                 dispatch(fetchPostSuccess(response.data));
             })
             .catch(error => {
-                throw(error);
+                dispatch(fetchPostUnccess())
+                //throw(error);
             })
     }
 }

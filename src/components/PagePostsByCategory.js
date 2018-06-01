@@ -6,9 +6,8 @@ import { connect } from 'react-redux';
 import PostItem from '../components/PostItem'
 import * as PostAPI from '../util/PostAPI'
 import * as PostActions from '../actions/PostActions';
-import configureStore from '../store/configureStore';
 
-class PostList extends Component {
+class PagePostsByCategory extends Component {
 
   constructor(props) {
     super(props);
@@ -20,7 +19,7 @@ componentDidMount() {
   console.log(this.props)
 
   // In case to show all posts.
-    this.props.fetchPosts();
+    this.props.fetchPostsByCategory(this.props.match.params.category);
     this.showBody = false;
 
 }
@@ -54,8 +53,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchPosts: (posts) => dispatch(PostActions.fetchPosts()),
-    fetchPost: (id) => dispatch(PostActions.fetchPost(id)),    
+    fetchPostsByCategory: (category) => dispatch(PostActions.fetchPostsByCategory(category)),
     votePost: (id, option) => dispatch(PostActions.votePost(id, option)),
     fetchComments : (id) => dispatch(PostActions.fetchComments(id)),
     voteComment: (id, option) => dispatch(PostActions.voteComment(id, option))
@@ -63,4 +61,4 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps )(PostList)
+export default connect(mapStateToProps, mapDispatchToProps )(PagePostsByCategory)

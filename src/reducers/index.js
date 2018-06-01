@@ -2,7 +2,8 @@ export default (state = { posts : []}, action) => {
     switch (action.type) {      
       case 'FETCH_POSTS_SUCCESS': {
         return { 
-          posts : action.posts 
+          posts : action.posts,
+          status : action.status 
         };
       }
       case 'VOTE_POST_SUCCESS' : {
@@ -20,7 +21,8 @@ export default (state = { posts : []}, action) => {
             } else {
               return post
             }
-          })
+          }),
+          status : action.status
         }  
       }             
       case 'VOTE_COMMENT_SUCCESS' : {
@@ -42,7 +44,8 @@ export default (state = { posts : []}, action) => {
           posts.showComments = true;
 
           return {
-            posts : posts
+            posts : posts,
+            status : action.status            
           }
 
       }  
@@ -57,16 +60,23 @@ export default (state = { posts : []}, action) => {
             } else {
               return post
             }
-          })
+          }),
+          status : action.status
         }          
       }
-
       case 'FETCH_POST_SUCCESS' : {
         console.log(action);
         return { 
-          posts : action.posts
+          posts : action.posts,
+          status : action.status
         }
       }
+      case 'FETCH_POST_UNSUCCESS' : {        
+        console.log(action)
+        return { 
+          status : action.status
+        }
+      }      
       default:
             return state;
     }

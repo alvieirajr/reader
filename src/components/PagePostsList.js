@@ -6,9 +6,8 @@ import { connect } from 'react-redux';
 import PostItem from '../components/PostItem'
 import * as PostAPI from '../util/PostAPI'
 import * as PostActions from '../actions/PostActions';
-import configureStore from '../store/configureStore';
 
-class Post extends Component {
+class PagePostsList extends Component {
 
   constructor(props) {
     super(props);
@@ -19,8 +18,9 @@ class Post extends Component {
 componentDidMount() {
   console.log(this.props)
 
-    this.props.fetchPost(this.props.match.params.post_id);
-    this.showBody = true;
+  // In case to show all posts.
+    this.props.fetchPosts();
+    this.showBody = false;
 
 }
 
@@ -62,4 +62,4 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps )(Post)
+export default connect(mapStateToProps, mapDispatchToProps )(PagePostsList)

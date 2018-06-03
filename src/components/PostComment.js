@@ -13,11 +13,10 @@ import IconThumbsUp from 'react-icons/lib/fa/thumbs-up'
 import IconThumbsOUp from 'react-icons/lib/fa/thumbs-o-up'
 
 import PostCommandBar from './PostCommandBar'
-
-import InputText from './InputText'
 import { voteComment } from '../actions/PostActions';
 
-import PostCommentFooter from './PostCommentFooter'
+import PostCommentFooter from './PostCommentFooter';
+
 
 function PostComment(props) {
         
@@ -39,10 +38,7 @@ function PostComment(props) {
                     </Row> 
                     <Col xs={12} className='without-lateral-padding'>
                     <hr className='half-rule' />
-                </Col>
-                   <Row>                                                       
-                               
-                    </Row>
+                </Col>           
                     <Row>
                         <PostCommentFooter id={props.id} voteScore={props.voteScore} voteComment = {props.voteComment}/>
                     </Row>                                  

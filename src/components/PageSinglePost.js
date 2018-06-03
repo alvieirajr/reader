@@ -21,7 +21,7 @@ class PageSinglePost extends Component {
         {this.props.status === PostActions.RETURN_404 ?
           <Page404 />
           : (this.props.status === PostActions.RETURN_OK ?
-            <PostCollection {...this.props} showBody={true}/> : '')}
+            <PostCollection {...this.props} showBody={true} /> : '')}
       </div>
     );
   }

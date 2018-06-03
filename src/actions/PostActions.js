@@ -1,10 +1,6 @@
 import Axios from 'axios';
 
 const api = "http://localhost:3001"
-const URL_BASE  = `${api}`;
-
-const URL_FETCH_POSTS  = `${api}/posts`;
-const URL_VOTE_POST = `${api}/posts/:id`;
 
 let token = localStorage.token
 
@@ -69,9 +65,23 @@ export const fetchPostSuccess = (post) => {
     }
 }
 
-export const fetchPostUnccess = (post) => {
+export const fetchPostUnsuccess = (post) => {
     return {
         type : 'FETCH_POST_UNSUCCESS',
+        status : RETURN_404
+    }
+}
+
+export const deletePostSuccess = (result) => {
+    return {
+        type : 'DELETE_POST_SUCCESS',
+        status : RETURN_OK
+    }
+}
+
+export const deletePostUnsuccess = (result) => {
+    return {
+        type : 'DELETE_POST_UNSUCCESS',
         status : RETURN_404
     }
 }
@@ -134,13 +144,31 @@ export const voteComment = (id, option) => {
 
 export const fetchPost = (id) => {    
     return (dispatch) => {
-        Axios.get(`${api}/posts/${id}`, { headers })
-            .then(response => {                
-                dispatch(fetchPostSuccess(response.data));
+        Axios.get(`${api}/posts/${id}`, { headers })        
+            .then(response => {       
+                console.log(response)  
+                console.log(Object.keys(response.data).length );       
+                if (Object.keys(response.data).length == 0)  {
+                    dispatch(fetchPostUnsuccess())    
+                } else {
+                    dispatch(fetchPostSuccess(response.data));
+                }
             })
             .catch(error => {
-                dispatch(fetchPostUnccess())
-                //throw(error);
+                dispatch(fetchPostUnsuccess())
+            })
+    }
+}
+
+export const deletePost = (id) => {    
+    return (dispatch) => {
+        Axios.delete(`${api}/posts/${id}`, { headers })
+            .then(response => {              
+                console.log(response);  
+                dispatch(deletePostSuccess(response.data));
+            })
+            .catch(error => {
+                dispatch(deletePostUnsuccess())
             })
     }
 }

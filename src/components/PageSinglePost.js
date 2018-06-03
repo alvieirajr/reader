@@ -36,7 +36,8 @@ const mapDispatchToProps = (dispatch) => {
     fetchPost: (id) => dispatch(PostActions.fetchPost(id)),
     votePost: (id, option) => dispatch(PostActions.votePost(id, option)),
     fetchComments: (id) => dispatch(PostActions.fetchComments(id)),
-    voteComment: (id, option) => dispatch(PostActions.voteComment(id, option))
+    voteComment: (id, option) => dispatch(PostActions.voteComment(id, option)),
+    deletePost: (id) => dispatch(PostActions.deletePost(id))
   }
 };
 

@@ -12,59 +12,63 @@ import { connect } from 'react-redux';
 import * as PostActions from '../actions/PostActions';
 import { fetchComments } from '../actions/PostActions';
 
+class PostCommandBar extends Component {
 
-class PostCommandBar extends Component { 
-    
     constructor(props) {
-        super(props);       
+        super(props);
     }
 
     componentDidMount() {
     }
 
-    toggleVoteUp = () => {             
-        this.props.votePost(this.props.id, 'upVote');        
+    toggleVoteUp = () => {
+        this.props.votePost(this.props.id, 'upVote');
     }
-    
+
     toggleVoteDown = () => {
-        this.props.votePost(this.props.id, 'downVote');   
-    }    
+        this.props.votePost(this.props.id, 'downVote');
+    }
 
     showComments = (post_id) => {
         this.props.fetchComments(this.props.id);
-       // console.log(this);
+    }
+
+    deletePost = () => {
+        console.log('ss');
+        this.props.deletePost(this.props.id);
+        this.props.history.push("/")
     }
 
     render() {
-     //   console.log(this.props);
+        //   console.log(this.props);
         return (
-            <div>               
+            <div>
                 <Col xs={4} >
-                    <ButtonToolbar >                                        
-                        <Button className='without-h-padding'  bsStyle="link" onClick={this.toggleVoteUp}>  
+                    <ButtonToolbar >
+                        <Button className='without-h-padding' bsStyle="link" onClick={this.toggleVoteUp}>
                             <IconThumbsOUp size={18} />
-                            </Button>
-                            <Button className='without-h-padding'  bsStyle="link"> 
+                        </Button>
+                        <Button className='without-h-padding' bsStyle="link">
                             &nbsp;{this.props.voteScore}&nbsp;
                             </Button>
-                            <Button className='without-h-padding' bsStyle="link" onClick={this.toggleVoteDown}> 
-                            <IconThumbsODown size={18} /> 
-                            </Button>
+                        <Button className='without-h-padding' bsStyle="link" onClick={this.toggleVoteDown}>
+                            <IconThumbsODown size={18} />
+                        </Button>
                     </ButtonToolbar>
-                </Col>                
+                </Col>
                 <Col xs={4} className='' >
                     <ButtonToolbar>
                         <Button className='' bsStyle="link" onClick={() => this.showComments(this.props.id)}><CommentIcon size={18} /> Comments </Button>
-                    </ButtonToolbar>                
-                </Col>
-                <Col xs={4} className=''>        
-                    <ButtonToolbar>
-                        <Button className='' bsStyle="link"><TrashIcon size={18} />Remove</Button>            
                     </ButtonToolbar>
-                </Col>      
+                </Col>
+                <Col xs={4} className=''>
+                    <ButtonToolbar>
+                        <Button className='' bsStyle="link" onClick={this.deletePost}><TrashIcon size={18} />Remove</Button>
+                    </ButtonToolbar>
+                </Col>
             </div>
         )
-        
+
     }
 }
 

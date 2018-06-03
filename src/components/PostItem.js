@@ -15,7 +15,7 @@ function PostItem(props) {
                 {props.showComments === true ? props.comments.map(item => {
                     return <PostComment {...item} voteComment={props.voteComment} />
                 }) : ''}
-                {props.showComments === true ? <InputText/> : ''}                     
+                {props.showComments === true ? <InputText /> : ''}
             </ListGroup>
         </div>
     );

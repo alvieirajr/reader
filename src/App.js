@@ -13,7 +13,7 @@ const App = ({ store }) => (
     <Router>
       <Switch>
         <Route exact path="/" component={PagePostsList} />
-        <Route exact path="/:category" component={PagePostsByCategory} />        
+        <Route exact path="/:category" component={PagePostsByCategory} />
         <Route exact path="/:category/:post_id" component={PageSinglePost} />
         <Route render={() => <h1>Page not found</h1>} />
       </Switch>

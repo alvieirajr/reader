@@ -76,7 +76,19 @@ export default (state = { posts : []}, action) => {
         return { 
           status : action.status
         }
-      }      
+      }     
+      case 'DELETE_POST_UNSUCCESS' : {        
+        console.log(action)
+        return { 
+          status : action.status
+        }
+      }     
+      case 'DELETE_POST_UNSUCCESS' : {        
+        console.log(action)
+        return { 
+          status : action.status
+        }
+      }                  
       default:
             return state;
     }

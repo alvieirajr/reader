@@ -146,8 +146,6 @@ export const fetchPost = (id) => {
     return (dispatch) => {
         Axios.get(`${api}/posts/${id}`, { headers })        
             .then(response => {       
-                console.log(response)  
-                console.log(Object.keys(response.data).length );       
                 if (Object.keys(response.data).length == 0)  {
                     dispatch(fetchPostUnsuccess())    
                 } else {

@@ -11,6 +11,7 @@ import IconThumbsOUp from 'react-icons/lib/fa/thumbs-o-up'
 import { connect } from 'react-redux';
 import * as PostActions from '../actions/PostActions';
 import { fetchComments } from '../actions/PostActions';
+import { withRouter } from 'react-router-dom'
 
 class PostCommandBar extends Component {
 
@@ -34,9 +35,16 @@ class PostCommandBar extends Component {
     }
 
     deletePost = () => {
-        console.log('ss');
         this.props.deletePost(this.props.id);
-        this.props.history.push("/")
+
+        if (this.props.match.path == '/:category/:post_id') {
+            this.props.history.push("/");
+        } else if (this.props.match.path == '/:category') {
+            window.location.reload();
+        } else if (this.props.location.pathname === '/') {
+            window.location.reload();
+        } 
+        
     }
 
     render() {
@@ -72,5 +80,5 @@ class PostCommandBar extends Component {
     }
 }
 
-export default PostCommandBar;
+export default withRouter(PostCommandBar);;
 

@@ -4,9 +4,7 @@ const api = "http://localhost:3001"
 const URL_BASE  = `${api}`;
 
 const URL_FETCH_POSTS  = `${api}/posts`;
-const URL_FETCH_POST = `${api}/posts:id`;
 const URL_VOTE_POST = `${api}/posts/:id`;
-const URL_FETCH_COMMENTS = '';
 
 let token = localStorage.token
 
@@ -88,7 +86,7 @@ export const voteCommentSuccess = (comment) => {
 
 export const fetchPosts = () => {
     return (dispatch) => {
-        Axios.get(URL_FETCH_POSTS,  { headers })
+        Axios.get(`${api}/posts`,  { headers })
             .then(response => {                
                 dispatch(fetchPostsSuccess(response.data));                
             })
@@ -100,7 +98,7 @@ export const fetchPosts = () => {
 
 export const fetchComments = (id) => {
     return (dispatch) => {
-        Axios.get(`${api}` + '/posts/' + id + '/comments', { headers })
+        Axios.get(`${api}/posts/${id}/comments`, { headers })
             .then(response => {
                 dispatch(fetchCommentsSuccess(response.data, id));
             })
@@ -112,7 +110,7 @@ export const fetchComments = (id) => {
 
 export const votePost = (id, option) => {
     return (dispatch) => {
-        Axios.post(`${api}` + '/posts/' + id, { option }, { headers })
+        Axios.post(`${api}/posts/${id}`, { option }, { headers })
             .then(response => {                
                 dispatch(votePostSuccess(response.data));
             })
@@ -124,7 +122,7 @@ export const votePost = (id, option) => {
 
 export const voteComment = (id, option) => {
     return (dispatch) => {
-        Axios.post(`${api}` + '/comments/' + id, { option }, { headers })
+        Axios.post(`${api}/comments/${id}`, { option }, { headers })
             .then(response => {                
                 dispatch(voteCommentSuccess(response.data));
             })
@@ -136,7 +134,7 @@ export const voteComment = (id, option) => {
 
 export const fetchPost = (id) => {    
     return (dispatch) => {
-        Axios.get(`${api}` + '/posts/' + id, { headers })
+        Axios.get(`${api}/posts/${id}`, { headers })
             .then(response => {                
                 dispatch(fetchPostSuccess(response.data));
             })
@@ -149,7 +147,7 @@ export const fetchPost = (id) => {
 
 export const fetchPostsByCategory = (category) => {
     return (dispatch) => {
-        Axios.get(`${api}` + '/' + category + '/posts', { headers })
+        Axios.get(`${api}/${category}/posts`, { headers })
             .then(response => {                
                 dispatch(fetchPostsSuccess(response.data));                
             })

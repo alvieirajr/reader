@@ -2227,21 +2227,4 @@ In the future, we might start automatically compiling incompatible third-party m
 ## Something Missing?
 
 If you have ideas for more “How To” recipes that should be on this page, [let us know](https://github.com/facebookincubator/create-react-app/issues) or [contribute some!](https://github.com/facebookincubator/create-react-app/edit/master/packages/react-scripts/template/README.md)
-
-
-
-        return {
-          posts : state.posts.map(post => {
-            if (post.id === action.post.id) { 
-              action.post.comments = post.comments;
-              action.post.showComments = post.showComments;              
-              return action.post
-            } else {
-              return post
-            }
-          })
-        }  
-      }   
-
-<Router path="/:category/:post_id" component={PostDetail}/>
-        <Router path="/:category" component={Category}/>        
+  

@@ -83,6 +83,20 @@ export const deletePostUnsuccess = (result) => {
     }
 }
 
+export const deleteCommentSuccess = (result) => {
+    return {
+        type : 'DELETE_COMMENT_SUCCESS',
+        status : RETURN_OK
+    }
+}
+
+export const deleteCommentUnsuccess = (result) => {
+    return {
+        type : 'DELETE_COMMENT_UNSUCCESS',
+        status : RETURN_404
+    }
+}
+
 export const voteCommentSuccess = (comment) => {
     return {
         type : 'VOTE_COMMENT_SUCCESS',
@@ -111,6 +125,18 @@ export const fetchComments = (id) => {
             })
             .catch(error => {
                 throw(error);
+            })
+    }
+}
+
+export const deleteComment = (id) => {    
+    return (dispatch) => {
+        Axios.delete(`${api}/comment/${id}`, { headers })
+            .then(response => {              
+                dispatch(deleteCommentSuccess(response.data));
+            })
+            .catch(error => {
+                dispatch(deleteCommentUnsuccess())
             })
     }
 }

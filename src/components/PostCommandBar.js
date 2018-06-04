@@ -91,7 +91,7 @@ class PostCommandBar extends Component {
                     </ButtonToolbar>
                 </Col>
 
-                <DialogConfirm title='Confirm' message='Are you sure you want to delete this post ?' show={this.state.showDialog} deletePost={this.deletePost} closeDialog={this.closeDialog}/>
+                <DialogConfirm title='Confirm' message='Are you sure you want to delete this post ?' show={this.state.showDialog} yesOperation={this.deletePost} noOperation={this.closeDialog}/>
 
             </div>
 

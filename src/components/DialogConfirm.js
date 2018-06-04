@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import FaQuestionCircle from 'react-icons/lib/fa/question-circle'
 import { Modal, Button } from 'react-bootstrap';
 
-class DialogConfirmModal extends React.Component {
+class DialogConfirm extends React.Component {
     render() {
       return (          
         <Modal
@@ -19,12 +19,12 @@ class DialogConfirmModal extends React.Component {
             </p>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={this.props.deletePost}>Yes</Button>
-            <Button bsStyle="primary" onClick={this.props.closeDialog}>No</Button>
+            <Button onClick={this.props.yesOperation}>Yes</Button>
+            <Button bsStyle="primary" onClick={this.props.noOperation}>No</Button>
           </Modal.Footer>
         </Modal>
       );
     }
   }
 
-  export default DialogConfirmModal;
+  export default DialogConfirm;

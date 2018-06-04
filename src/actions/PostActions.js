@@ -29,7 +29,6 @@ export const timeConverter = (UNIX_timestamp) =>{
   }
 
 export const fetchPostsSuccess = (posts) => {    
-    console.log(posts);
     return {
         type : 'FETCH_POSTS_SUCCESS',
         posts : posts,
@@ -38,8 +37,6 @@ export const fetchPostsSuccess = (posts) => {
 }
 
 export const fetchCommentsSuccess = (comments, from) => {
-    //console.log(comments)
-    //console.log(from);
     return {
         type : 'FETCH_COMMENTS',
         comments : comments,
@@ -162,7 +159,6 @@ export const deletePost = (id) => {
     return (dispatch) => {
         Axios.delete(`${api}/posts/${id}`, { headers })
             .then(response => {              
-                console.log(response);  
                 dispatch(deletePostSuccess(response.data));
             })
             .catch(error => {

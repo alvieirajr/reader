@@ -12,11 +12,16 @@ import { connect } from 'react-redux';
 import * as PostActions from '../actions/PostActions';
 import { fetchComments } from '../actions/PostActions';
 import { withRouter } from 'react-router-dom'
+import DialogConfirm from '../components/DialogConfirm';
 
 class PostCommandBar extends Component {
 
     constructor(props) {
         super(props);
+
+        this.state = {
+            showDialog : false
+        }
     }
 
     componentDidMount() {
@@ -35,20 +40,31 @@ class PostCommandBar extends Component {
     }
 
     deletePost = () => {
+        
+        this.setState({ showDialog : false });
+        
+        console.log(this.state)
+        
         this.props.deletePost(this.props.id);
-
+        
         if (this.props.match.path == '/:category/:post_id') {
             this.props.history.push("/");
         } else if (this.props.match.path == '/:category') {
             window.location.reload();
         } else if (this.props.location.pathname === '/') {
             window.location.reload();
-        } 
-        
+        }       
+    }
+
+    closeDialog = () => {
+        this.setState({ showDialog : false });
     }
 
     render() {
         //   console.log(this.props);
+
+        //let closeDialog = () => this.setState({ showDialog : false });
+
         return (
             <div>
                 <Col xs={4} >
@@ -71,10 +87,14 @@ class PostCommandBar extends Component {
                 </Col>
                 <Col xs={4} className=''>
                     <ButtonToolbar>
-                        <Button className='' bsStyle="link" onClick={this.deletePost}><TrashIcon size={18} />Remove</Button>
+                        <Button className='' bsStyle="link" onClick={() => this.setState({ showDialog : true })}><TrashIcon size={18} />Remove</Button>
                     </ButtonToolbar>
                 </Col>
+
+                <DialogConfirm title='Confirm' message='Are you sure you want to delete this post ?' show={this.state.showDialog} deletePost={this.deletePost} closeDialog={this.closeDialog}/>
+
             </div>
+
         )
 
     }

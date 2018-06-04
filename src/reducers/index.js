@@ -74,21 +74,26 @@ export default (state = { posts : []}, action) => {
       case 'FETCH_POST_UNSUCCESS' : {        
         console.log(action)
         return { 
-          status : action.status
+          status : action.status,
+          title : action.title,
+          menssage : action.menssage
         }
-      }     
-      case 'DELETE_POST_UNSUCCESS' : {        
-        console.log(action)
-        return { 
-          status : action.status
+      }                 
+      case 'CATEGORY_NOT_EXIST' : {
+        return {
+          status : action.status,
+          title : action.title,
+          menssage : action.menssage
         }
-      }     
-      case 'DELETE_POST_UNSUCCESS' : {        
-        console.log(action)
-        return { 
-          status : action.status
-        }
-      }                  
+      }   
+      case 'FETCH_ERROR' : {
+        return {
+          status : action.status,
+          title : action.title,
+          menssage : action.menssage,
+          showBackButton: false
+        }        
+      }
       default:
             return state;
     }

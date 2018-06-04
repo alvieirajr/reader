@@ -7,15 +7,16 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import PagePostsList from './components/PagePostsList';
 import PageSinglePost from './components/PageSinglePost';
 import PagePostsByCategory from './components/PagePostsByCategory';
+import PageError from './components/PageError';
 
 const App = ({ store }) => (
   <Provider store={store}>
     <Router>
-      <Switch>
+      <Switch>      
         <Route exact path="/" component={PagePostsList} />
         <Route exact path="/:category" component={PagePostsByCategory} />
         <Route exact path="/:category/:post_id" component={PageSinglePost} />
-        <Route render={() => <h1>Page not found</h1>} />
+        <Route render={() => <PageError/>} />
       </Switch>
     </Router>
 

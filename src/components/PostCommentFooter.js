@@ -11,12 +11,16 @@ import IconThumbsOUp from 'react-icons/lib/fa/thumbs-o-up'
 import { connect } from 'react-redux';
 import * as PostActions from '../actions/PostActions';
 import { fetchComments } from '../actions/PostActions';
-
+import DialogConfirm from '../components/DialogConfirm';
 
 class PostCommentFooter extends Component { 
     
     constructor(props) {
-        super(props);       
+        super(props);   
+        
+        this.state = {
+            showDialog : false
+        }        
     }
 
     componentDidMount() {
@@ -30,8 +34,19 @@ class PostCommentFooter extends Component {
         this.props.voteComment(this.props.id, 'downVote');   
     }    
 
+    deleteComment = () => {
+        
+        this.setState({ showDialog : false });
+       
+        this.props.deleteComment(this.props.id);  
+    }
+
+    closeDialog = () => {
+        this.setState({ showDialog : false });
+    }    
+
     render() {
-     //   console.log(this.props);
+        console.log(this.props);
         return (
             <div>               
                 <Col xs={4} >
@@ -51,9 +66,12 @@ class PostCommentFooter extends Component {
                 </Col>
                 <Col xs={4} className=''>        
                     <ButtonToolbar>
-                        <Button className='' bsStyle="link"><TrashIcon size={18} />Remove</Button>            
+                        <Button className='' bsStyle="link" onClick={() => this.setState({ showDialog : true })}><TrashIcon size={18} />Remove</Button>            
                     </ButtonToolbar>
                 </Col>      
+
+                <DialogConfirm title='Confirm' menssage='Are you sure you want to delete this comment ?' show={this.state.showDialog} yesOperation={this.deleteComment} noOperation={this.closeDialog}/>
+                
             </div>
         )
         

@@ -78,10 +78,11 @@ export const deletePostSuccess = (result) => {
     }
 }
 
-export const deleteCommentSuccess = (result) => {
+export const deleteCommentSuccess = (comment) => {
     return {
         type: 'DELETE_COMMENT_SUCCESS',
-        status: RETURN_OK
+        status: RETURN_OK,
+        deleted_comment: comment
     }
 }
 
@@ -138,11 +139,13 @@ export const fetchComments = (id) => {
 
 export const deleteComment = (id) => {
     return (dispatch) => {
-        Axios.delete(`${api}/comment/${id}`, { headers })
+        Axios.delete(`${api}/comments/${id}`, { headers })
             .then(response => {
+                console.log(response)
                 dispatch(deleteCommentSuccess(response.data));
             })
             .catch(error => {
+                console.log(error)
                 dispatch(fetchError());
             })
     }

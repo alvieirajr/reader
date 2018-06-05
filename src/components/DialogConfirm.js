@@ -16,7 +16,7 @@ class DialogConfirm extends React.Component {
           </Modal.Header>
           <Modal.Body>            
             <p>
-                <FaQuestionCircle size={32}/>&nbsp;&nbsp;&nbsp;&nbsp;{this.props.message}
+                <FaQuestionCircle size={32}/>&nbsp;&nbsp;&nbsp;&nbsp;{this.props.menssage}
             </p>
           </Modal.Body>
           <Modal.Footer>

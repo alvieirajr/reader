@@ -19,7 +19,7 @@ import PostCommentFooter from './PostCommentFooter';
 
 
 function PostComment(props) {
-        
+        console.log(props)
         return (
                
                 <ListGroupItem className='text-left small-padding-bottom bg-gray'>
@@ -40,7 +40,7 @@ function PostComment(props) {
                     <hr className='half-rule' />
                 </Col>           
                     <Row>
-                        <PostCommentFooter id={props.id} voteScore={props.voteScore} voteComment = {props.voteComment}/>
+                        <PostCommentFooter id={props.id} voteScore={props.voteScore} voteComment = {props.voteComment} deleteComment={props.deleteComment}/>
                     </Row>                                  
                 </ListGroupItem>
       

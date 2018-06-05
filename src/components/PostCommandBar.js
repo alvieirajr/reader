@@ -42,9 +42,7 @@ class PostCommandBar extends Component {
     deletePost = () => {
         
         this.setState({ showDialog : false });
-        
-        console.log(this.state)
-        
+       
         this.props.deletePost(this.props.id);
         
         if (this.props.match.path == '/:category/:post_id') {
@@ -61,10 +59,6 @@ class PostCommandBar extends Component {
     }
 
     render() {
-        //   console.log(this.props);
-
-        //let closeDialog = () => this.setState({ showDialog : false });
-
         return (
             <div>
                 <Col xs={4} >
@@ -91,7 +85,7 @@ class PostCommandBar extends Component {
                     </ButtonToolbar>
                 </Col>
 
-                <DialogConfirm title='Confirm' message='Are you sure you want to delete this post ?' show={this.state.showDialog} yesOperation={this.deletePost} noOperation={this.closeDialog}/>
+                <DialogConfirm title='Confirm' menssage='Are you sure you want to delete this post ?' show={this.state.showDialog} yesOperation={this.deletePost} noOperation={this.closeDialog}/>
 
             </div>
 

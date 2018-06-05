@@ -15,6 +15,7 @@ function PostCollection(props) {
             fetchComments={props.fetchComments}
             voteComment={props.voteComment}
             deletePost={props.deletePost}
+            deleteComment={props.deleteComment}
           />
         )}
       </Col>

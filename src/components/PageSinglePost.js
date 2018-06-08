@@ -16,7 +16,6 @@ class PageSinglePost extends Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <div>
         {this.props.status === PostActions.RETURN_404 ?
@@ -39,7 +38,8 @@ const mapDispatchToProps = (dispatch) => {
     fetchComments: (id) => dispatch(PostActions.fetchComments(id)),
     voteComment: (id, option) => dispatch(PostActions.voteComment(id, option)),
     deletePost: (id) => dispatch(PostActions.deletePost(id)),
-    deleteComment: (id) => dispatch(PostActions.deleteComment(id))
+    deleteComment: (id) => dispatch(PostActions.deleteComment(id)),
+    createComment: (params) => dispatch(PostActions.createComment(params))
   }
 };
 

@@ -88,23 +88,24 @@ export default (state = { posts: [] }, action) => {
         showBackButton: false
       }
     }
+    case 'CREATE_COMMENT_SUCCESS': {
+      return {
+        status: action.status
+      }
+    }
     case 'DELETE_COMMENT_SUCCESS': {
-      console.log(action) // deleted_comment
-      console.log(state)
       return {
         status: action.status,
         posts: state.posts.map(item => {
           if (item.comments == undefined) return item;
           if (item.commentCount > 0) {
             item.comments = item.comments.filter(comment => {
-              console.log(action.deleted_comment)
               if (comment.id !== action.deleted_comment.id) {
                 return comment
               }
             })
             item.commentCount--;
-          }
-          
+          }          
           return item;
         })
       }

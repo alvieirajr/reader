@@ -7,6 +7,7 @@ import InputText from './InputText'
 import { connect } from 'react-redux';
 
 function PostItem(props) {
+    //console.log(props)
     return (        
         <div>
             <ListGroup>
@@ -15,7 +16,7 @@ function PostItem(props) {
                 {props.showComments === true ? props.comments.map(item => {
                     return <PostComment {...item} voteComment={props.voteComment} deleteComment={props.deleteComment}/>
                 }) : ''}
-                {props.showComments === true ? <InputText /> : ''}
+                {props.showComments === true ? <InputText createComment={props.createComment} parentId={props.id} /> : ''}
             </ListGroup>
         </div>
     );

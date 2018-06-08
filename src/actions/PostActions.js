@@ -1,4 +1,5 @@
 import Axios from 'axios';
+import { uuidv4 } from '..//util//Utils';
 
 const api = "http://localhost:3001"
 
@@ -103,6 +104,13 @@ export const voteCommentSuccess = (comment) => {
     }
 }
 
+export const createCommentSuccess = (result) => {
+    console.log(result)
+    return {
+        type: 'CREATE_COMMENT_SUCCESS',
+        status: RETURN_OK
+    }
+}
 export const fetchError = (errorCode, errorMessage) => {
     return {
         type: 'FETCH_ERROR',
@@ -171,6 +179,27 @@ export const voteComment = (id, option) => {
             })
             .catch(error => {
                 dispatch(fetchError())
+            })
+    }
+}
+
+export const createComment = (params) => {
+    return (dispatch) => {
+
+        params.id = uuidv4();
+        params.timestamp = Date.now();
+        params.author = 'thingone';
+        console.log(params)
+        console.log(`${api}/comments`);
+
+        Axios.post(`${api}/comments`, { ...params }, { headers })
+            .then(response => {
+                console.log(response)
+                //dispatch(createCommentSuccess(response.data));
+            })
+            .catch(error => {
+                console.log(error)
+              //  dispatch(fetchError())
             })
     }
 }

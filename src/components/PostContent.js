@@ -4,7 +4,6 @@ import EditIcon from 'react-icons/lib/ti/pencil'
 import PostCommandBar from './PostCommandBar';
 
 function PostContent(props) {
-  console.log(props)
   return (
     <ListGroupItem className='text-left without-padding-bottom'>
       <Row>

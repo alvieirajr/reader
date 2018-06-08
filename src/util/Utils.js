@@ -14,6 +14,6 @@ export const timeConverter = (UNIX_timestamp) => {
   var hour = a.getHours();
   var min = a.getMinutes();
   var sec = a.getSeconds();
-  var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec;
+  var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + String("00" +min).slice(-2) + ':' + String("00" +sec).slice(-2) ;
   return time;
 }

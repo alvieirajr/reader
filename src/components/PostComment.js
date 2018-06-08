@@ -16,7 +16,7 @@ import PostCommandBar from './PostCommandBar'
 import { voteComment } from '../actions/PostActions';
 
 import PostCommentFooter from './PostCommentFooter';
-
+import { timeConverter } from '..//util//Utils';
 
 function PostComment(props) {
         console.log(props)
@@ -25,7 +25,7 @@ function PostComment(props) {
                 <ListGroupItem className='text-left small-padding-bottom bg-gray'>
                     <Row>
                         <Col xs={10} >
-                            <p><b>{props.author}</b> &#183; Há 1h</p>
+                            <p><b>{props.author}</b> &#183; {timeConverter(props.timestamp)}</p>
                         </Col>     
                         <Col xs={2}>
                         <Button className='edit-link' bsStyle="link"><EditIcon size={21} /></Button>

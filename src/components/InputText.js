@@ -37,7 +37,7 @@ class InputText extends Component {
         return (
             <ListGroupItem className='box-small-padding bg-gray'>
                 <FormGroup className='without-bottom-margin'>
-                    <FormControl className='wwrap2' type="text" placeholder='Write a comment...' value={this.state.value} onChange={this.handleChange} onKeyPress={this._handleKeyPress} />
+                    <FormControl type="text" placeholder='Write a comment...' wrap="hard" value={this.state.value} onChange={this.handleChange} onKeyPress={this._handleKeyPress} />
                 </FormGroup>
             </ListGroupItem>
         )

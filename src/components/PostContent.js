@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Label, Badge, Button, ButtonToolbar, Col, Row, ListGroup, ListGroupItem } from 'react-bootstrap';
 import EditIcon from 'react-icons/lib/ti/pencil'
 import PostCommandBar from './PostCommandBar';
+import { timeConverter } from '..//util//Utils';
 
 function PostContent(props) {
   return (
@@ -11,7 +12,7 @@ function PostContent(props) {
           {props.showBody == false ? <a href={`/${props.category}/${props.id}`} ><h5><b>{props.title}</b></h5></a> :
             <h5><b>{props.title}</b></h5>
           }
-          <p>{props.author} &#183; {props.timestamp} &#183; <Label bsStyle='primary'>{props.category}</Label></p>
+          <p>{props.author} &#183; {timeConverter(props.timestamp)} &#183; <Label bsStyle='primary'>{props.category}</Label></p>
         </Col>
         <Col xs={2} >
           <Button className='edit-link' bsStyle="link"><EditIcon size={21} /></Button>

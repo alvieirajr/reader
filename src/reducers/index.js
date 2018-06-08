@@ -90,7 +90,15 @@ export default (state = { posts: [] }, action) => {
     }
     case 'CREATE_COMMENT_SUCCESS': {
       return {
-        status: action.status
+        status: action.status,
+        posts : state.posts.map(post => {
+            if (post.id == action.comment.parentId) {
+              post.comments.push(action.comment)
+              post.commentCount++;
+            }
+            return post;
+        })
+          
       }
     }
     case 'DELETE_COMMENT_SUCCESS': {

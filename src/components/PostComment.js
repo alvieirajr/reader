@@ -32,7 +32,7 @@ function PostComment(props) {
                     </Col>                           
                     </Row>  
                     <Row>
-                        <Col xs={12} >
+                        <Col xs={12} className='wwrap2'>
                             {props.body}   
                         </Col>
                     </Row> 

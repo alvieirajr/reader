@@ -19,8 +19,8 @@ function PostContent(props) {
       </Row>
       {props.showBody ?
         <Row className='editable-row'>
-          <Col xs={12} >
-            <span className='text-left'>{props.body}</span>
+          <Col xs={12}>          
+            <span className='text-left wwrap2'>{props.body}</span>
           </Col>
         </Row>
         : ''}

@@ -29,6 +29,9 @@ body {
   padding-left: 0px;
 }
 
+.wwrap2 {
+  word-wrap: break-word;
+}
 /*
   .col-xs-2
 */

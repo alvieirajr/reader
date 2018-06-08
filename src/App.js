@@ -1,5 +1,5 @@
-import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import './App.css';
 //import 'bootstrap/dist/css/bootstrap-theme.css';
 import React from 'react';
 import { Provider } from 'react-redux';

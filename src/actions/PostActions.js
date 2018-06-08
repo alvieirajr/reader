@@ -16,19 +16,6 @@ const headers = {
     'Authorization': token
 }
 
-export const timeConverter = (UNIX_timestamp) => {
-    var a = new Date(UNIX_timestamp);
-    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    var year = a.getFullYear();
-    var month = months[a.getMonth()];
-    var date = a.getDate();
-    var hour = a.getHours();
-    var min = a.getMinutes();
-    var sec = a.getSeconds();
-    var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec;
-    return time;
-}
-
 export const fetchPostsSuccess = (posts) => {
     return {
         type: 'FETCH_POSTS_SUCCESS',
@@ -104,10 +91,10 @@ export const voteCommentSuccess = (comment) => {
     }
 }
 
-export const createCommentSuccess = (result) => {
-    console.log(result)
+export const createCommentSuccess = (comment) => {
     return {
         type: 'CREATE_COMMENT_SUCCESS',
+        comment: comment,
         status: RETURN_OK
     }
 }
@@ -188,18 +175,15 @@ export const createComment = (params) => {
 
         params.id = uuidv4();
         params.timestamp = Date.now();
-        params.author = 'thingone';
-        console.log(params)
-        console.log(`${api}/comments`);
+        params.author = 'thingthree';
 
-        Axios.post(`${api}/comments`, { ...params }, { headers })
+        Axios.post(`${api}/comments`, params, { headers })
             .then(response => {
-                console.log(response)
-                //dispatch(createCommentSuccess(response.data));
+                console.log(response.data)
+                dispatch(createCommentSuccess(response.data));
             })
-            .catch(error => {
-                console.log(error)
-              //  dispatch(fetchError())
+            .catch(error => {               
+                dispatch(fetchError())
             })
     }
 }

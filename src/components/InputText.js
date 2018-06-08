@@ -17,11 +17,14 @@ class InputText extends Component {
 
     _handleKeyPress = (e) => {
         if (e.key === 'Enter') {
-            this.props.createComment({
-                parentId : this.props.parentId,
-                body : this.state.value
-            })
+            if (this.state.value.length > 0) {
+                this.props.createComment({
+                    parentId: this.props.parentId,
+                    body: this.state.value
+                })
+                this.setState({ value: '' });
 
+            }
         }
     }
 
@@ -34,7 +37,7 @@ class InputText extends Component {
         return (
             <ListGroupItem className='box-small-padding bg-gray'>
                 <FormGroup className='without-bottom-margin'>
-                    <FormControl className='wwrap' type="text" placeholder='Write a comment...' value={this.state.value} onChange={this.handleChange} onKeyPress={this._handleKeyPress} />
+                    <FormControl className='wwrap2' type="text" placeholder='Write a comment...' value={this.state.value} onChange={this.handleChange} onKeyPress={this._handleKeyPress} />
                 </FormGroup>
             </ListGroupItem>
         )

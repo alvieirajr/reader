@@ -13,18 +13,22 @@ class InputText extends Component {
     }
 
     componentDidMount() {
+        this.setState({ value: '' });
+        
     }
 
     _handleKeyPress = (e) => {
         if (e.key === 'Enter') {
-            if (this.state.value.length > 0) {
+            if (this.state.value.trim().length > 0) {
                 this.props.createComment({
                     parentId: this.props.parentId,
                     body: this.state.value
                 })
                 this.setState({ value: '' });
+                console.log(this)
 
             }
+            e.preventDefault();
         }
     }
 
@@ -37,7 +41,7 @@ class InputText extends Component {
         return (
             <ListGroupItem className='box-small-padding bg-gray'>
                 <FormGroup className='without-bottom-margin'>
-                    <FormControl type="text" placeholder='Write a comment...' wrap="hard" value={this.state.value} onChange={this.handleChange} onKeyPress={this._handleKeyPress} />
+                    <FormControl componentClass="textarea" className='text-area'  type="text" placeholder='Write a comment...' wrap="hard" value={this.state.value} onChange={this.handleChange} onKeyPress={this._handleKeyPress} />
                 </FormGroup>
             </ListGroupItem>
         )

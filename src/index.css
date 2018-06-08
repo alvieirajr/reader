@@ -32,6 +32,11 @@ body {
 .wwrap2 {
   word-wrap: break-word;
 }
+
+.text-area {
+  resize: vertical;
+  min-height: 54px;
+}
 /*
   .col-xs-2
 */

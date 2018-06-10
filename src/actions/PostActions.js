@@ -98,6 +98,15 @@ export const createCommentSuccess = (comment) => {
         status: RETURN_OK
     }
 }
+
+export const editCommentSuccess = (comment) => {
+    return {
+        type: 'EDIT_COMMENT_SUCCESS',
+        comment: comment,
+        status: RETURN_OK
+    }
+}
+
 export const fetchError = (errorCode, errorMessage) => {
     return {
         type: 'FETCH_ERROR',
@@ -181,6 +190,24 @@ export const createComment = (params) => {
             .then(response => {
                 console.log(response.data)
                 dispatch(createCommentSuccess(response.data));
+            })
+            .catch(error => {               
+                dispatch(fetchError())
+            })
+    }
+}
+
+export const editComment = (id, body) => {
+    return (dispatch) => {
+        let params = {
+            timestamp : Date.now(),
+            body : body
+        }
+
+        Axios.put(`${api}/comments/${id}`, params, { headers })
+            .then(response => {
+                console.log(response.data)
+                dispatch(editCommentSuccess(response.data));
             })
             .catch(error => {               
                 dispatch(fetchError())

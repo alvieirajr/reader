@@ -101,6 +101,12 @@ export default (state = { posts: [] }, action) => {
           
       }
     }
+    case 'EDIT_COMMENT_SUCCESS': {
+      return {
+        status: action.status,
+        posts : state.posts
+      }      
+    }
     case 'DELETE_COMMENT_SUCCESS': {
       return {
         status: action.status,

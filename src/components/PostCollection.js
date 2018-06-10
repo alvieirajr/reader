@@ -17,6 +17,7 @@ function PostCollection(props) {
             deletePost={props.deletePost}
             deleteComment={props.deleteComment}
             createComment={props.createComment}
+            editComment={props.editComment}
           />
         )}
       </Col>

@@ -13,7 +13,7 @@ class FormEditComment extends React.Component {
   }
 
   componentDidMount() {
-      
+
   }
 
   _handleKeyPress = (e) => {
@@ -23,21 +23,27 @@ class FormEditComment extends React.Component {
            parentId: this.props.parentId,
            body: this.state.value
          })*/
-        this.setState({ value: '' });
-        console.log(this)
-
+        //this.setState({ value: '' });
+        //console.log(this)
       }
       e.preventDefault();
     }
   }
 
-  onEnter = () => {
-    console.log('OnEnter');
+  handleOnEntering = () => {
     this.setState({ value: this.props.body });
   }
 
   handleChange = (e) => {
-    this.setState({ value: e.target.body });
+    this.setState({ value: e.target.value });
+  }
+
+  saveOperation = () => {
+    this.props.editComment(
+      this.props.id,
+      this.state.value
+    );
+    this.props.close();
   }
 
   render() {
@@ -46,8 +52,8 @@ class FormEditComment extends React.Component {
         {...this.props}
         bsSize="large"
         aria-labelledby="contained-modal-title-lg"
-        onHide={this.props.cancelOperation}
-        onEntering={this.onEnter}
+        onHide={this.props.close}
+        onEntering={this.handleOnEntering}
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-lg">{this.props.title}</Modal.Title>
@@ -58,8 +64,8 @@ class FormEditComment extends React.Component {
           </FormGroup>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={this.props.saveOperation}>Save</Button>
-          <Button bsStyle="primary" onClick={this.props.cancelOperation}>Cancel</Button>
+          <Button onClick={this.saveOperation}>Save</Button>
+          <Button bsStyle="primary" onClick={this.props.close}>Cancel</Button>
         </Modal.Footer>
       </Modal>
     )

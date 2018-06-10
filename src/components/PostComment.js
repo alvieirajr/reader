@@ -25,22 +25,20 @@ class PostComment extends Component {
         super(props);
 
         this.state = {
-            showFormEditComment : false
+            showFormEditComment: false
         }
     }
 
     editComment = () => {
         this.setState({ showFormEditComment: false });
-    
-        //this.props.deleteComment(this.props.id);
-      }
-    
-      closeDialog = () => {
+    }
+
+    closeForm = () => {
         this.setState({ showFormEditComment: false });
-      }
-        
-    
+    }
+
     render() {
+        //console.log(this.props)
         return (
 
             <ListGroupItem className='text-left small-padding-bottom bg-gray'>
@@ -49,7 +47,7 @@ class PostComment extends Component {
                         <p><b>{this.props.author}</b> &#183; {timeConverter(this.props.timestamp)}</p>
                     </Col>
                     <Col xs={2}>
-                        <Button className='edit-link' bsStyle="link" onClick={() => this.setState({ showFormEditComment : true })}><EditIcon size={21} /></Button>
+                        <Button className='edit-link' bsStyle="link" onClick={() => this.setState({ showFormEditComment: true })}><EditIcon size={21} /></Button>
                     </Col>
                 </Row>
                 <Row>
@@ -64,9 +62,9 @@ class PostComment extends Component {
                     <PostCommentFooter id={this.props.id} voteScore={this.props.voteScore} voteComment={this.props.voteComment} deleteComment={this.props.deleteComment} />
                 </Row>
 
-                <FormEditComment title='Edit a comment' show={this.state.showFormEditComment} saveOperation={this.editComment} cancelOperation={this.closeDialog} body={this.props.body} />
-                
-            </ListGroupItem>           
+                <FormEditComment title='Edit a comment' show={this.state.showFormEditComment} editComment={this.props.editComment} close={this.closeForm} id={this.props.id} body={this.props.body} />
+
+            </ListGroupItem>
 
         )
     }

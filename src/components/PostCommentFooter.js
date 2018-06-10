@@ -46,7 +46,7 @@ class PostCommentFooter extends Component {
     }    
 
     render() {
-        console.log(this.props);
+
         return (
             <div>               
                 <Col xs={4} >

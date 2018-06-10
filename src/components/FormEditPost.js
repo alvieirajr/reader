@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import FaQuestionCircle from 'react-icons/lib/fa/question-circle'
 import { Modal, Button, FormGroup, FormControl } from 'react-bootstrap';
 
-class FormEditComment extends React.Component {
+class FormEditPost extends React.Component {
 
   constructor(props) {
     super(props);
@@ -13,7 +13,6 @@ class FormEditComment extends React.Component {
   }
 
   componentDidMount() {
-      
   }
 
   _handleKeyPress = (e) => {
@@ -31,13 +30,8 @@ class FormEditComment extends React.Component {
     }
   }
 
-  onEnter = () => {
-    console.log('OnEnter');
-    this.setState({ value: this.props.body });
-  }
-
   handleChange = (e) => {
-    this.setState({ value: e.target.body });
+    this.setState({ value: e.target.value });
   }
 
   render() {
@@ -46,8 +40,7 @@ class FormEditComment extends React.Component {
         {...this.props}
         bsSize="large"
         aria-labelledby="contained-modal-title-lg"
-        onHide={this.props.cancelOperation}
-        onEntering={this.onEnter}
+        onHide={this.props.noOperation}
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-lg">{this.props.title}</Modal.Title>
@@ -58,12 +51,12 @@ class FormEditComment extends React.Component {
           </FormGroup>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={this.props.saveOperation}>Save</Button>
-          <Button bsStyle="primary" onClick={this.props.cancelOperation}>Cancel</Button>
+          <Button onClick={this.props.yesOperation}>Yes</Button>
+          <Button bsStyle="primary" onClick={this.props.noOperation}>No</Button>
         </Modal.Footer>
       </Modal>
     )
   }
 }
 
-export default FormEditComment;
+export default FormEditPost;

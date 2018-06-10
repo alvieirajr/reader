@@ -17,35 +17,59 @@ import { voteComment } from '../actions/PostActions';
 
 import PostCommentFooter from './PostCommentFooter';
 import { timeConverter } from '..//util//Utils';
+import FormEditComment from './FormEditComment';
 
-function PostComment(props) {
-        console.log(props)
+class PostComment extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            showFormEditComment : false
+        }
+    }
+
+    editComment = () => {
+        this.setState({ showFormEditComment: false });
+    
+        //this.props.deleteComment(this.props.id);
+      }
+    
+      closeDialog = () => {
+        this.setState({ showFormEditComment: false });
+      }
+        
+    
+    render() {
         return (
-               
-                <ListGroupItem className='text-left small-padding-bottom bg-gray'>
-                    <Row>
-                        <Col xs={10} >
-                            <p><b>{props.author}</b> &#183; {timeConverter(props.timestamp)}</p>
-                        </Col>     
-                        <Col xs={2}>
-                        <Button className='edit-link' bsStyle="link"><EditIcon size={21} /></Button>
-                    </Col>                           
-                    </Row>  
-                    <Row>
-                        <Col xs={12} className='wwrap2'>
-                            {props.body}   
-                        </Col>
-                    </Row> 
-                    <Col xs={12} className='without-lateral-padding'>
+
+            <ListGroupItem className='text-left small-padding-bottom bg-gray'>
+                <Row>
+                    <Col xs={10} >
+                        <p><b>{this.props.author}</b> &#183; {timeConverter(this.props.timestamp)}</p>
+                    </Col>
+                    <Col xs={2}>
+                        <Button className='edit-link' bsStyle="link" onClick={() => this.setState({ showFormEditComment : true })}><EditIcon size={21} /></Button>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col xs={12} className='wwrap2'>
+                        {this.props.body}
+                    </Col>
+                </Row>
+                <Col xs={12} className='without-lateral-padding'>
                     <hr className='half-rule' />
-                </Col>           
-                    <Row>
-                        <PostCommentFooter id={props.id} voteScore={props.voteScore} voteComment = {props.voteComment} deleteComment={props.deleteComment}/>
-                    </Row>                                  
-                </ListGroupItem>
-      
-            
+                </Col>
+                <Row>
+                    <PostCommentFooter id={this.props.id} voteScore={this.props.voteScore} voteComment={this.props.voteComment} deleteComment={this.props.deleteComment} />
+                </Row>
+
+                <FormEditComment title='Edit a comment' show={this.state.showFormEditComment} saveOperation={this.editComment} cancelOperation={this.closeDialog} body={this.props.body} />
+                
+            </ListGroupItem>           
+
         )
+    }
 }
 
 

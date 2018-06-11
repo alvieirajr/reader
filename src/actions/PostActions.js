@@ -191,7 +191,7 @@ export const createComment = (params) => {
                 console.log(response.data)
                 dispatch(createCommentSuccess(response.data));
             })
-            .catch(error => {               
+            .catch(error => {
                 dispatch(fetchError())
             })
     }
@@ -200,8 +200,8 @@ export const createComment = (params) => {
 export const editComment = (id, body) => {
     return (dispatch) => {
         let params = {
-            timestamp : Date.now(),
-            body : body
+            timestamp: Date.now(),
+            body: body
         }
 
         Axios.put(`${api}/comments/${id}`, params, { headers })
@@ -209,7 +209,7 @@ export const editComment = (id, body) => {
                 console.log(response.data)
                 dispatch(editCommentSuccess(response.data));
             })
-            .catch(error => {               
+            .catch(error => {
                 dispatch(fetchError())
             })
     }
@@ -227,11 +227,7 @@ export const fetchPost = (id) => {
                 }
             }).catch(error => {
                 if (error.response === undefined) {
-                    console.log('s')
-                   // let errorCode = (error.response == undefined ? null : error.response.status);
-                 //   let errorMenssage = (error.response == undefined ? null : error.response.statusText);
-                 //   dispatch(fetchError(errorCode, errorMenssage));
-                 dispatch(fetchError());
+                    dispatch(fetchError());
                 } else {
                     dispatch(fetchPostUnsuccess());
                 }

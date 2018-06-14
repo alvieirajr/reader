@@ -50,7 +50,7 @@ class FormEditComment extends React.Component {
         onEntering={this.handleOnEntering}
       >
         <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-lg">{this.props.title}</Modal.Title>
+          <Modal.Title id="contained-modal-title-lg">Edit a Comment</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <FormGroup className='without-bottom-margin'>

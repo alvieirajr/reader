@@ -107,6 +107,14 @@ export const editCommentSuccess = (comment) => {
     }
 }
 
+export const editPostSuccess = (post) => {
+    return {
+        type: 'EDIT_POST_SUCCESS',
+        post: post,
+        status: RETURN_OK
+    }
+}
+
 export const fetchError = (errorCode, errorMessage) => {
     return {
         type: 'FETCH_ERROR',
@@ -208,6 +216,26 @@ export const editComment = (id, body) => {
             .then(response => {
                 console.log(response.data)
                 dispatch(editCommentSuccess(response.data));
+            })
+            .catch(error => {
+                dispatch(fetchError())
+            })
+    }
+}
+
+export const editPost = (post) => {
+    console.log(post)
+    return (dispatch) => {
+        let params = {
+            timestamp: Date.now(),
+            body: post.body,
+            title: post.title
+        }
+
+        Axios.put(`${api}/posts/${post.id}`, params, { headers })
+            .then(response => {
+                console.log(response.data)
+                dispatch(editPostSuccess(response.data));
             })
             .catch(error => {
                 dispatch(fetchError())

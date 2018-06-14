@@ -17,15 +17,14 @@ class PostContent extends Component {
 
   editPost = () => {
     this.setState({ showFormEditPost: false });
-
-    //this.props.deleteComment(this.props.id);
   }
 
-  closeDialog = () => {
+  closeForm = () => {
     this.setState({ showFormEditPost: false });
   }
 
   render() {
+    console.log(this.props)
     return (
       <ListGroupItem className='text-left without-padding-bottom'>
         <Row>
@@ -36,7 +35,7 @@ class PostContent extends Component {
             <p>{this.props.author} &#183; {timeConverter(this.props.timestamp)} &#183; <Label bsStyle='primary'>{this.props.category}</Label></p>
           </Col>
           <Col xs={2} >
-            <Button className='edit-link' bsStyle="link" onClick={() => this.setState({ showFormEditPost : true })}><EditIcon size={21} /></Button>
+            <Button className='edit-link' bsStyle="link" onClick={() => this.setState({ showFormEditPost: true })}><EditIcon size={21} /></Button>
           </Col>
         </Row>
         {this.props.showBody ?
@@ -54,7 +53,7 @@ class PostContent extends Component {
           <PostCommandBar {...this.props} />
         </Row>
 
-        <FormEditPost show={this.state.showFormEditPost} yesOperation={this.editPost} noOperation={this.closeDialog} />
+        <FormEditPost show={this.state.showFormEditPost} editPost={this.props.editPost} close={this.closeForm} post={this.props} />
 
       </ListGroupItem>
 

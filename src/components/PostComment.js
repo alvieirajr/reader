@@ -62,7 +62,7 @@ class PostComment extends Component {
                     <PostCommentFooter id={this.props.id} voteScore={this.props.voteScore} voteComment={this.props.voteComment} deleteComment={this.props.deleteComment} />
                 </Row>
 
-                <FormEditComment title='Edit a comment' show={this.state.showFormEditComment} editComment={this.props.editComment} close={this.closeForm} id={this.props.id} body={this.props.body} />
+                <FormEditComment show={this.state.showFormEditComment} editComment={this.props.editComment} close={this.closeForm} id={this.props.id} body={this.props.body} />
 
             </ListGroupItem>
 

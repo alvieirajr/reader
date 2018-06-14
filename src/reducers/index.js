@@ -135,6 +135,18 @@ export default (state = { posts: [] }, action) => {
         })
       }
     }
+    case 'EDIT_POST_SUCCESS': {
+      return {
+        status: action.status,
+        posts : state.posts.map(item => {
+          if (item.id == action.post.id) {
+            return action.post
+          } else {
+            return item
+          }
+        })
+      }
+    }
     default:
       return state;
   }

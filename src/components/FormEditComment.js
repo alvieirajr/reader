@@ -18,14 +18,6 @@ class FormEditComment extends React.Component {
 
   _handleKeyPress = (e) => {
     if (e.key === 'Enter') {
-      if (this.state.value.trim().length > 0) {
-        /* this.props.XXXComment({
-           parentId: this.props.parentId,
-           body: this.state.value
-         })*/
-        //this.setState({ value: '' });
-        //console.log(this)
-      }
       e.preventDefault();
     }
   }
@@ -39,11 +31,13 @@ class FormEditComment extends React.Component {
   }
 
   saveOperation = () => {
-    this.props.editComment(
-      this.props.id,
-      this.state.value
-    );
-    this.props.close();
+    if (this.state.value.trim().length > 0) {
+      this.props.editComment(
+        this.props.id,
+        this.state.value
+      );
+      this.props.close();
+    }
   }
 
   render() {

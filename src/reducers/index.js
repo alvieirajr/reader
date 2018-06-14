@@ -102,25 +102,20 @@ export default (state = { posts: [] }, action) => {
       }
     }
     case 'EDIT_COMMENT_SUCCESS': {
-      console.log(action);
       return {
         status: action.status,
         posts: state.posts.map(post => {
           if (post.id == action.comment.parentId) {
-            post.showComments = true
             post.comments = post.comments.map(comment => {
-              console.log(comment)
               if (comment.id === action.comment.id) {
                 return action.comment;
               } else {
                 return comment;
               }
-
             })
           }
           return post;
         })
-
       }
     }
     case 'DELETE_COMMENT_SUCCESS': {

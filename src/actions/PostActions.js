@@ -99,6 +99,14 @@ export const createCommentSuccess = (comment) => {
     }
 }
 
+export const newPostSuccess = (post) => {
+    return {
+        type: 'CREATE_POST_SUCCESS',
+        post: post,
+        status: RETURN_OK
+    }
+}
+
 export const editCommentSuccess = (comment) => {
     return {
         type: 'EDIT_COMMENT_SUCCESS',
@@ -153,11 +161,9 @@ export const deleteComment = (id) => {
     return (dispatch) => {
         Axios.delete(`${api}/comments/${id}`, { headers })
             .then(response => {
-                console.log(response)
                 dispatch(deleteCommentSuccess(response.data));
             })
             .catch(error => {
-                console.log(error)
                 dispatch(fetchError());
             })
     }
@@ -196,7 +202,6 @@ export const createComment = (params) => {
 
         Axios.post(`${api}/comments`, params, { headers })
             .then(response => {
-                console.log(response.data)
                 dispatch(createCommentSuccess(response.data));
             })
             .catch(error => {
@@ -214,7 +219,6 @@ export const editComment = (id, body) => {
 
         Axios.put(`${api}/comments/${id}`, params, { headers })
             .then(response => {
-                console.log(response.data)
                 dispatch(editCommentSuccess(response.data));
             })
             .catch(error => {
@@ -224,7 +228,6 @@ export const editComment = (id, body) => {
 }
 
 export const editPost = (post) => {
-    console.log(post)
     return (dispatch) => {
         let params = {
             timestamp: Date.now(),
@@ -234,8 +237,28 @@ export const editPost = (post) => {
 
         Axios.put(`${api}/posts/${post.id}`, params, { headers })
             .then(response => {
-                console.log(response.data)
                 dispatch(editPostSuccess(response.data));
+            })
+            .catch(error => {
+                dispatch(fetchError())
+            })
+    }
+}
+
+export const newPost = (post) => {
+    return (dispatch) => {
+        let params = {
+            id: uuidv4(),
+            timestamp: Date.now (),
+            title: post.title,
+            body: post.body,
+            author: 'thingthree',
+            category: post.category
+        }    
+
+        Axios.post(`${api}/posts`, params, { headers })
+            .then(response => {
+                dispatch(newPostSuccess(response.data));
             })
             .catch(error => {
                 dispatch(fetchError())
@@ -283,7 +306,6 @@ export const fetchPostsByCategory = (category) => {
 
                     Axios.get(`${api}/${category}/posts`, { headers })
                         .then(response => {
-                            console.log(response)
                             dispatch(fetchPostsSuccess(response.data));
                         })
                         .catch(error => {
@@ -295,7 +317,6 @@ export const fetchPostsByCategory = (category) => {
                 }
             })
             .catch(error => {
-                console.log(error)
                 dispatch(fetchError())
             })
 

@@ -14,7 +14,7 @@ function PostItem(props) {
                 <PostContent {...props} />
                 <PostSummary {...props} />
                 {props.showComments === true ? props.comments.map(item => {
-                    return <PostComment {...item} voteComment={props.voteComment} editComment={props.editComment} deleteComment={props.deleteComment}/>
+                    return <PostComment key={item.id} {...item} voteComment={props.voteComment} editComment={props.editComment} deleteComment={props.deleteComment}/>
                 }) : ''}
                 {props.showComments === true ? <InputText createComment={props.createComment} parentId={props.id} /> : ''}
             </ListGroup>

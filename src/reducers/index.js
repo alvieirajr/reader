@@ -7,8 +7,6 @@ export default (state = { posts: [] }, action) => {
       };
     }
     case 'VOTE_POST_SUCCESS': {
-      console.log(action);
-      console.log(state.post);
       return {
         posts: state.posts.map(post => {
           if (post.id === action.post.id) {
@@ -139,12 +137,22 @@ export default (state = { posts: [] }, action) => {
       return {
         status: action.status,
         posts : state.posts.map(item => {
-          if (item.id == action.post.id) {
+          if (item.id == action.post.id) {            
+            action.post.showComments = item.showComments 
+            action.post.comments = item.comments;           
             return action.post
           } else {
             return item
           }
         })
+      }
+    }
+    case 'CREATE_POST_SUCCESS': {      
+      state.posts.push(action.post);      
+      return {
+        status: action.status,
+        posts: state.posts,
+        bypass : ''
       }
     }
     default:

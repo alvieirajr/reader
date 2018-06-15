@@ -24,7 +24,6 @@ class PostContent extends Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <ListGroupItem className='text-left without-padding-bottom'>
         <Row>

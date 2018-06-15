@@ -4,12 +4,14 @@ import { connect } from 'react-redux';
 import PostItem from '../components/PostItem'
 
 function PostCollection(props) {
+  console.log(props)  
   return (
     <Row>
       <Col xs={3} md={4} />
       <Col xs={6} md={4}>
         {props.posts.map((item) =>
-          <PostItem {...item}
+          <PostItem  key={item.id} 
+            {...item}
             showBody={props.showBody}
             votePost={props.votePost}
             fetchComments={props.fetchComments}
@@ -19,6 +21,7 @@ function PostCollection(props) {
             createComment={props.createComment}
             editComment={props.editComment}
             editPost={props.editPost}
+            newPost={props.newPost}
           />
         )}
       </Col>

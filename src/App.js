@@ -12,12 +12,14 @@ import PageError from './components/PageError';
 const App = ({ store }) => (
   <Provider store={store}>
     <Router>
+    <div>
       <Switch>      
         <Route exact path="/" component={PagePostsList} />
         <Route exact path="/:category" component={PagePostsByCategory} />
         <Route exact path="/:category/:post_id" component={PageSinglePost} />
         <Route render={() => <PageError/>} />
       </Switch>
+    </div>
     </Router>
 
   </Provider>

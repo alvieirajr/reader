@@ -4,6 +4,7 @@ import * as PostAPI from '../util/PostAPI'
 import * as PostActions from '../actions/PostActions';
 import PageError from '../components/PageError';
 import PostCollection from '../components/PostCollection';
+import Header from '../components/Header';
 
 class PagePostsList extends Component {
 
@@ -16,8 +17,10 @@ class PagePostsList extends Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <div>
+        <Header {...this.props}/>
         {this.props.status === PostActions.RETURN_404 ?
           <PageError title={this.props.title} menssage={this.props.menssage} showBackButton={this.props.showBackButton}/>
           : (this.props.status === PostActions.RETURN_OK ?
@@ -28,6 +31,7 @@ class PagePostsList extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state);
   return state;
 }
 
@@ -41,7 +45,8 @@ const mapDispatchToProps = (dispatch) => {
     deleteComment: (id) => dispatch(PostActions.deleteComment(id)),
     createComment: (params) => dispatch(PostActions.createComment(params)),
     editComment: (id, body) => dispatch(PostActions.editComment(id, body)),
-    editPost: (post) => dispatch(PostActions.editPost(post))
+    editPost: (post) => dispatch(PostActions.editPost(post)),
+    newPost: (post) => dispatch(PostActions.newPost(post))
   }
 };
 

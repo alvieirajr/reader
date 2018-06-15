@@ -4,6 +4,7 @@ import * as PostAPI from '../util/PostAPI'
 import * as PostActions from '../actions/PostActions';
 import PageError from '../components/PageError';
 import PostCollection from '../components/PostCollection';
+import Header from '../components/Header';
 
 class PagePostsByCategory extends Component {
 
@@ -16,7 +17,6 @@ class PagePostsByCategory extends Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <div>
         {this.props.status === PostActions.RETURN_404 ?
@@ -42,7 +42,8 @@ const mapDispatchToProps = (dispatch) => {
     deleteComment: (id) => dispatch(PostActions.deleteComment(id)),
     createComment: (params) => dispatch(PostActions.createComment(params)),
     editComment: (id, body) => dispatch(PostActions.editComment(id, body)),
-    editPost: (post) => dispatch(PostActions.editPost(post))
+    editPost: (post) => dispatch(PostActions.editPost(post)),
+    newPost: (post) => dispatch(PostActions.newPost(post))
   }
 };
 

@@ -25,8 +25,6 @@ class InputText extends Component {
                     body: this.state.value
                 })
                 this.setState({ value: '' });
-                console.log(this)
-
             }
             e.preventDefault();
         }

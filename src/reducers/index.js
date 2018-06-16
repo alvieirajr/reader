@@ -7,8 +7,9 @@ export default (state = { posts: [] }, action) => {
       };
     }
     case 'VOTE_POST_SUCCESS': {
+      let newArray = state.posts.slice();
       return {
-        posts: state.posts.map(post => {
+        posts: newArray.map(post => {
           if (post.id === action.post.id) {
             action.post.comments = post.comments;
             action.post.showComments = post.showComments;
@@ -21,7 +22,8 @@ export default (state = { posts: [] }, action) => {
       }
     }
     case 'VOTE_COMMENT_SUCCESS': {
-      let posts = state.posts.map(post => {
+      let newArray = state.posts.slice();
+      let posts = newArray.map(post => {
         if (typeof post.comments !== 'undefined') {
           post.comments = post.comments.map(comment => {
             if (comment.id === action.comment.id) {
@@ -45,8 +47,9 @@ export default (state = { posts: [] }, action) => {
 
     }
     case 'FETCH_COMMENTS': {
+      let newArray = state.posts.slice();
       return {
-        posts: state.posts.map(post => {
+        posts: newArray.map(post => {
           if (post.id === action.from) {
             post.showComments = true;
             post.comments = action.comments;
@@ -87,9 +90,10 @@ export default (state = { posts: [] }, action) => {
       }
     }
     case 'CREATE_COMMENT_SUCCESS': {
+      let newArray = state.posts.slice();
       return {
         status: action.status,
-        posts: state.posts.map(post => {
+        posts: newArray.map(post => {
           if (post.id == action.comment.parentId) {
             post.comments.push(action.comment)
             post.commentCount++;
@@ -100,9 +104,10 @@ export default (state = { posts: [] }, action) => {
       }
     }
     case 'EDIT_COMMENT_SUCCESS': {
+      let newArray = state.posts.slice();
       return {
         status: action.status,
-        posts: state.posts.map(post => {
+        posts: newArray.map(post => {
           if (post.id == action.comment.parentId) {
             post.comments = post.comments.map(comment => {
               if (comment.id === action.comment.id) {
@@ -117,9 +122,10 @@ export default (state = { posts: [] }, action) => {
       }
     }
     case 'DELETE_COMMENT_SUCCESS': {
+      let newArray = state.posts.slice();
       return {
         status: action.status,
-        posts: state.posts.map(item => {
+        posts: newArray.map(item => {
           if (item.comments == undefined) return item;
           if (item.commentCount > 0) {
             item.comments = item.comments.filter(comment => {
@@ -134,9 +140,10 @@ export default (state = { posts: [] }, action) => {
       }
     }
     case 'EDIT_POST_SUCCESS': {
+      let newArray = state.posts.slice();
       return {
         status: action.status,
-        posts : state.posts.map(item => {
+        posts : newArray.map(item => {
           if (item.id == action.post.id) {            
             action.post.showComments = item.showComments 
             action.post.comments = item.comments;           
@@ -148,11 +155,11 @@ export default (state = { posts: [] }, action) => {
       }
     }
     case 'CREATE_POST_SUCCESS': {      
-      state.posts.push(action.post);      
+      let newArray = state.posts.slice();
+      newArray.splice(state.posts.length+1, 0, action.post)
       return {
         status: action.status,
-        posts: state.posts,
-        bypass : ''
+        posts: newArray
       }
     }
     default:

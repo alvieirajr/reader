@@ -156,10 +156,17 @@ export default (state = { posts: [] }, action) => {
     }
     case 'CREATE_POST_SUCCESS': {      
       let newArray = state.posts.slice();
-      newArray.splice(state.posts.length+1, 0, action.post)
+      newArray.splice(0, 0, action.post)
       return {
         status: action.status,
         posts: newArray
+      }
+    }
+    case 'FETCH_CATEGORIES_SUCCESS': {
+      return {
+        status: action.status,
+        posts: state.posts,
+        categories : action.categories
       }
     }
     default:

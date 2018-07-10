@@ -18,7 +18,7 @@ class Header extends Component {
         this.setState({ showNewPostForm: false });
     }
 
-    render () {    
+    render () {   
         return (
             <Navbar>
             <Navbar.Header>
@@ -29,7 +29,7 @@ class Header extends Component {
               </Navbar.Brand>
             </Navbar.Header>
 
-            <FormNewPost show={this.state.showNewPostForm} newPost={this.props.newPost} close={this.closeForm}/>
+            <FormNewPost categories={this.props.categories} fetchCategories={this.props.fetchCategories} show={this.state.showNewPostForm} newPost={this.props.newPost} close={this.closeForm}/>
           
             </Navbar>      
         )

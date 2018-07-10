@@ -133,6 +133,15 @@ export const fetchError = (errorCode, errorMessage) => {
     }
 }
 
+export const fetchCategoriesSuccess = (categories) => {    
+    console.log(categories)
+    return {
+        type: 'FETCH_CATEGORIES_SUCCESS',
+        categories: categories,
+        status: RETURN_OK        
+    }
+}
+
 export const fetchPosts = () => {
     return (dispatch) => {
         Axios.get(`${api}/posts`, { headers })
@@ -245,6 +254,7 @@ export const editPost = (post) => {
     }
 }
 
+
 export const newPost = (post) => {
     return (dispatch) => {
         let params = {
@@ -291,6 +301,18 @@ export const deletePost = (id) => {
         Axios.delete(`${api}/posts/${id}`, { headers })
             .then(response => {
                 dispatch(deletePostSuccess(response.data));
+            })
+            .catch(error => {
+                dispatch(fetchError())
+            })
+    }
+}
+
+export const fetchCategories = () => {
+    return (dispatch) => {
+        Axios.get(`${api}/categories`, { headers })
+            .then(response => {                
+                dispatch(fetchCategoriesSuccess(response.data.categories));
             })
             .catch(error => {
                 dispatch(fetchError())

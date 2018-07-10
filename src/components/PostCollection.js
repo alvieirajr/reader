@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import PostItem from '../components/PostItem'
 
 function PostCollection(props) {
-  console.log(props)  
   return (
     <Row>
       <Col xs={3} md={4} />
@@ -22,6 +21,7 @@ function PostCollection(props) {
             editComment={props.editComment}
             editPost={props.editPost}
             newPost={props.newPost}
+            fetchCategories={props.fetchCategories}
           />
         )}
       </Col>

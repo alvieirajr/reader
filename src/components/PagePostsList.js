@@ -17,7 +17,6 @@ class PagePostsList extends Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <div>
         <Header {...this.props}/>
@@ -31,7 +30,6 @@ class PagePostsList extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return state;
 }
 
@@ -46,7 +44,8 @@ const mapDispatchToProps = (dispatch) => {
     createComment: (params) => dispatch(PostActions.createComment(params)),
     editComment: (id, body) => dispatch(PostActions.editComment(id, body)),
     editPost: (post) => dispatch(PostActions.editPost(post)),
-    newPost: (post) => dispatch(PostActions.newPost(post))
+    newPost: (post) => dispatch(PostActions.newPost(post)),
+    fetchCategories: () => dispatch(PostActions.fetchCategories())
   }
 };
 

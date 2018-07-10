@@ -24,7 +24,7 @@ class FormNewPost extends React.Component {
   }
 
   handleOnEnter = () => {
-    this.setState({ title: '', body: '' });
+    this.setState({ title: '', body: '', category: '' });
     this.props.fetchCategories();
   }
 
@@ -37,8 +37,7 @@ class FormNewPost extends React.Component {
   }
 
   selectItem = (eventKey) => {
-    console.log(eventKey);
-    this.setState({ ...this.state, category : eventKey})
+    this.setState({ ...this.state, category: eventKey })
   }
 
   saveOperation = () => {
@@ -46,17 +45,14 @@ class FormNewPost extends React.Component {
       this.props.newPost({
         title: this.state.title,
         body: this.state.body,
-        category: 'react'
+        category: this.state.category
       });
       this.props.close();
     }
   }
 
   render() {
-    console.log(this.props)
-
     let categories = this.props.categories || [{}];
-
     return (
       <Modal
         {...this.props}
@@ -79,22 +75,15 @@ class FormNewPost extends React.Component {
               title={this.state.category == '' ? "Select a category" : (this.state.category)}
               id="dropdown-size-default"
             >
+              {categories !== undefined ? (
+                <MenuItem eventKey='' active={this.state.category == '' ? true : false} onSelect={this.selectItem}>&nbsp;</MenuItem>
+              ) : ''
+              }
               {categories !== undefined ? categories.map(item => {
                 let isActive = (item.name == this.state.category ? true : false);
                 return <MenuItem eventKey={item.name} active={isActive} onSelect={this.selectItem}>{item.name}</MenuItem>
               }) : ''
               }
-              {categories !== undefined ? (
-                //let isActive = (this.state.category == '' ? true : false);
-                <MenuItem eventKey='' active={this.state.category == '' ? true : false} onSelect={this.selectItem}>&nbsp;</MenuItem>
-              ) : ''
-              }
-
-
-
-
-
-
             </DropdownButton>
           </FormGroup>
         </Modal.Body>

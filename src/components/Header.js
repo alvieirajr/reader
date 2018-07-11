@@ -47,7 +47,7 @@ class Header extends Component {
                                         <span>&nbsp;&nbsp;</span>
                                     : ''  }                                    
                                     {this.props.match.path !== '/' ?
-                                        <Button type="submit" onClick={() => this.setState({ showNewPostForm: true })}>Show All</Button>
+                                        <Button type="submit" href="/">Show All</Button>
                                     : ''}
                             </FormGroup>
                         </Navbar.Brand>

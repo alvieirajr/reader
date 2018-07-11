@@ -19,9 +19,10 @@ class PagePostsList extends Component {
   render() {
     return (
       <div>
-        <Header {...this.props}/>
+        {this.props.status === PostActions.RETURN_OK ?
+          <Header {...this.props} /> : ''}
         {this.props.status === PostActions.RETURN_404 ?
-          <PageError title={this.props.title} menssage={this.props.menssage} showBackButton={this.props.showBackButton}/>
+          <PageError title={this.props.title} menssage={this.props.menssage} showBackButton={this.props.showBackButton} />
           : (this.props.status === PostActions.RETURN_OK ?
             <PostCollection {...this.props} showBody={false} /> : '')}
       </div>

@@ -41,7 +41,7 @@ class FormNewPost extends React.Component {
   }
 
   saveOperation = () => {
-    if (this.state.title.trim().length > 0 && this.state.body.trim().length > 0) {
+    if (this.state.title.trim().length > 0 && this.state.body.trim().length > 0 && this.state.category !== '') {
       this.props.newPost({
         title: this.state.title,
         body: this.state.body,

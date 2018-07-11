@@ -19,8 +19,10 @@ class PageSinglePost extends Component {
   render() {
     return (
       <div>
+        {this.props.status === PostActions.RETURN_OK ?
+          <Header {...this.props} /> : ''}
         {this.props.status === PostActions.RETURN_404 ?
-          <PageError title={this.props.title} menssage={this.props.menssage} showBackButton={this.props.showBackButton}/>
+          <PageError title={this.props.title} menssage={this.props.menssage} showBackButton={this.props.showBackButton} />
           : (this.props.status === PostActions.RETURN_OK ?
             <PostCollection {...this.props} history={this.history} showBody={true} /> : '')}
       </div>

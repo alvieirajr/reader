@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PostItem from '../components/PostItem'
 
 function PostCollection(props) {
-  return (
+  return (    
     <Row>
       <Col xs={3} md={4} />
       <Col xs={6} md={4}>

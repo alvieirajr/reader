@@ -37,7 +37,6 @@ class FormEditPost extends React.Component {
 
   saveOperation = () => {
     if (this.state.title.trim().length > 0 && this.state.body.trim().length > 0) {
-      console.log(this.props)
       this.props.editPost({
         id : this.props.post.id,
         title : this.state.title, 

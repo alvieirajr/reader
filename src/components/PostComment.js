@@ -38,7 +38,6 @@ class PostComment extends Component {
     }
 
     render() {
-        //console.log(this.props)
         return (
 
             <ListGroupItem className='text-left small-padding-bottom bg-gray'>

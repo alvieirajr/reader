@@ -163,10 +163,17 @@ export default (state = { posts: [] }, action) => {
       }
     }
     case 'FETCH_CATEGORIES_SUCCESS': {
+      let newArray = state.posts.slice();
       return {
         status: action.status,
-        posts: state.posts,
+        posts: newArray,
         categories : action.categories
+      }
+    }
+    case 'SORTED': {      
+      return {
+        status: action.status,
+        posts: action.posts
       }
     }
     default:

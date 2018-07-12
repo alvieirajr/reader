@@ -79,9 +79,9 @@ class FormNewPost extends React.Component {
                 <MenuItem eventKey='' active={this.state.category == '' ? true : false} onSelect={this.selectItem}>&nbsp;</MenuItem>
               ) : ''
               }
-              {categories !== undefined ? categories.map(item => {
+              {categories !== undefined ? categories.map((item, i) => {
                 let isActive = (item.name == this.state.category ? true : false);
-                return <MenuItem eventKey={item.name} active={isActive} onSelect={this.selectItem}>{item.name}</MenuItem>
+                return <MenuItem key={i} eventKey={item.name} active={isActive} onSelect={this.selectItem}>{item.name}</MenuItem>
               }) : ''
               }
             </DropdownButton>

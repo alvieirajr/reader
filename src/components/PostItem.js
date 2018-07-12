@@ -7,7 +7,6 @@ import InputText from './InputText'
 import { connect } from 'react-redux';
 
 function PostItem(props) {
-    //console.log(props)
     return (        
         <div>
             <ListGroup>

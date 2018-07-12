@@ -133,12 +133,19 @@ export const fetchError = (errorCode, errorMessage) => {
     }
 }
 
-export const fetchCategoriesSuccess = (categories) => {    
-    console.log(categories)
+export const fetchCategoriesSuccess = (categories) => {
     return {
         type: 'FETCH_CATEGORIES_SUCCESS',
         categories: categories,
-        status: RETURN_OK        
+        status: RETURN_OK
+    }
+}
+
+export const sortBySuccess = (sortedPosts) => {
+    return {
+        type: 'SORTED',
+        posts: sortedPosts,
+        status: RETURN_OK
     }
 }
 
@@ -259,12 +266,12 @@ export const newPost = (post) => {
     return (dispatch) => {
         let params = {
             id: uuidv4(),
-            timestamp: Date.now (),
+            timestamp: Date.now(),
             title: post.title,
             body: post.body,
             author: 'thingthree',
             category: post.category
-        }    
+        }
 
         Axios.post(`${api}/posts`, params, { headers })
             .then(response => {
@@ -311,7 +318,7 @@ export const deletePost = (id) => {
 export const fetchCategories = () => {
     return (dispatch) => {
         Axios.get(`${api}/categories`, { headers })
-            .then(response => {                
+            .then(response => {
                 dispatch(fetchCategoriesSuccess(response.data.categories));
             })
             .catch(error => {
@@ -342,8 +349,42 @@ export const fetchPostsByCategory = (category) => {
                 dispatch(fetchError())
             })
 
-
-
-
     }
+}
+
+export const sortBy = (sortMode, posts) => {
+    return (dispatch) => {
+        let sortedPosts = posts.slice();
+        
+        if (sortMode == 'by-date') {
+            sortedPosts.sort(function (a, b) {
+                if (a.timestamp > b.timestamp) {
+                    return -1;
+                }
+                if (a.timestamp < b.timestamp) {
+                    return 1;
+                }
+                if (a.timestamp == b.timestamp) {
+                    return 0;
+                }
+            });
+        }
+
+        if (sortMode == 'by-score') {
+            sortedPosts.sort(function (a, b) {
+                if (a.voteScore > b.voteScore) {
+                    return -1;
+                }
+                if (a.voteScore < b.voteScore) {
+                    return 1;
+                }
+                if (a.voteScore == b.voteScore) {
+                    return 0;
+                }
+            });
+        }
+
+        dispatch(sortBySuccess(sortedPosts));
+    }
+
 }

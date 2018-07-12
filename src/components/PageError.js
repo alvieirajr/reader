@@ -12,7 +12,7 @@ function PageError(props) {
                     {props.menssage === undefined ? 'Ops... The page you were looking not be found.' : props.menssage}
                 </p>
                 <p>
-                   {props.showBackButton !== false ? <Button bsStyle="primary">Go to Posts List</Button> : ''}
+                   {props.showBackButton !== false ? <Button bsStyle="primary" href='/'>Go to Posts List</Button> : ''}
                 </p>                
             </Jumbotron>
             </Col>

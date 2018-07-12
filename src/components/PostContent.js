@@ -24,7 +24,6 @@ class PostContent extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <ListGroupItem className='text-left without-padding-bottom'>
         <Row>
@@ -32,7 +31,7 @@ class PostContent extends Component {
             {this.props.showBody == false ? <a href={`/${this.props.category}/${this.props.id}`} ><h5><b>{this.props.title}</b></h5></a> :
               <h5><b>{this.props.title}</b></h5>
             }
-            <p>{this.props.author} &#183; {timeConverter(this.props.timestamp)} &#183; <Label bsStyle='primary'>{this.props.category}</Label></p>
+            <p>{this.props.author} &#183; {timeConverter(this.props.timestamp)} &#183; <a href={'/' + this.props.category}><Label bsStyle='primary'>{this.props.category}</Label></a></p>
           </Col>
           <Col xs={2} >
             <Button className='edit-link' bsStyle="link" onClick={() => this.setState({ showFormEditPost: true })}><EditIcon size={21} /></Button>

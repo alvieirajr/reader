@@ -18,8 +18,12 @@ class Header extends Component {
         this.setState({ showNewPostForm: false });
     }
 
+    sortPosts = (eventKey) => {
+        this.setState({ sortBy : eventKey});
+        this.props.sortBy(eventKey, this.props.posts)
+    }
+
     render() {
-        console.log(this)
         return (
             <div>
                 <Navbar>
@@ -28,13 +32,13 @@ class Header extends Component {
                             <FormGroup>
                                 {this.props.match.path == '/' || this.props.match.path == '/:category' ?
                                     <DropdownButton
-                                        bsSize="default"
+
                                         title="Order by"
                                         id="dropdown-size-default"
-                                        class="pull-right dropdown-menu"
+                                        
                                     >
-                                        <MenuItem eventKey='by-date' onSelect={this.sortPosts}>Date</MenuItem>
-                                        <MenuItem eventKey='by-score' onSelect={this.sortPosts}>Score</MenuItem>
+                                        <MenuItem eventKey='by-date' active={this.state.sortBy === 'by-date' ? true : false} onSelect={this.sortPosts}>Date</MenuItem>
+                                        <MenuItem eventKey='by-score' active={this.state.sortBy === 'by-score' ? true : false} onSelect={this.sortPosts}>Score</MenuItem>
                                     </DropdownButton>
                                     : ''}
                                     {this.props.match.path == '/' ?

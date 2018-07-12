@@ -1,6 +1,6 @@
 # Readable Project
 
-This is final assessment project for Udacity's React Fundamentals course. 
+This is final assessment project for Udacity's React and Redux course. 
 
 ## TL;DR
 

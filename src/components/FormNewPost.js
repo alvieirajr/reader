@@ -72,15 +72,15 @@ class FormNewPost extends React.Component {
             <p></p>
             <DropdownButton
               bsSize="default"
-              title={this.state.category == '' ? "Select a category" : (this.state.category)}
+              title={this.state.category === '' ? "Select a category" : (this.state.category)}
               id="dropdown-size-default"
             >
               {categories !== undefined ? (
-                <MenuItem eventKey='' active={this.state.category == '' ? true : false} onSelect={this.selectItem}>&nbsp;</MenuItem>
+                <MenuItem eventKey='' active={this.state.category === '' ? true : false} onSelect={this.selectItem}>&nbsp;</MenuItem>
               ) : ''
               }
               {categories !== undefined ? categories.map((item, i) => {
-                let isActive = (item.name == this.state.category ? true : false);
+                let isActive = (item.name === this.state.category ? true : false);
                 return <MenuItem key={i} eventKey={item.name} active={isActive} onSelect={this.selectItem}>{item.name}</MenuItem>
               }) : ''
               }

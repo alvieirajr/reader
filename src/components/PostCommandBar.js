@@ -45,9 +45,9 @@ class PostCommandBar extends Component {
        
         this.props.deletePost(this.props.id);
         
-        if (this.props.match.path == '/:category/:post_id') {
+        if (this.props.match.path === '/:category/:post_id') {
             this.props.history.push("/");
-        } else if (this.props.match.path == '/:category') {
+        } else if (this.props.match.path === '/:category') {
             window.location.reload();
         } else if (this.props.location.pathname === '/') {
             window.location.reload();

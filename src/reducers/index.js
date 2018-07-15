@@ -7,6 +7,7 @@ export default (state = { posts: [] }, action) => {
       };
     }
     case 'VOTE_POST_SUCCESS': {
+      let categories = state.categories !== undefined ? state.categories.slice() : [] 
       let newArray = state.posts.slice();
       return {
         posts: newArray.map(post => {
@@ -18,10 +19,12 @@ export default (state = { posts: [] }, action) => {
             return post
           }
         }),
-        status: action.status
+        status: action.status,
+        categories : categories
       }
     }
     case 'VOTE_COMMENT_SUCCESS': {
+      let categories = state.categories !== undefined ? state.categories.slice() : [];
       let newArray = state.posts.slice();
       let posts = newArray.map(post => {
         if (typeof post.comments !== 'undefined') {
@@ -42,11 +45,13 @@ export default (state = { posts: [] }, action) => {
 
       return {
         posts: posts,
-        status: action.status
+        status: action.status,
+        categories : categories
       }
 
     }
     case 'FETCH_COMMENTS': {
+      let categories = state.categories !== undefined ? state.categories.slice() : [];
       let newArray = state.posts.slice();
       return {
         posts: newArray.map(post => {
@@ -58,7 +63,8 @@ export default (state = { posts: [] }, action) => {
             return post
           }
         }),
-        status: action.status
+        status: action.status,
+        categories : categories
       }
     }
     case 'FETCH_POST_SUCCESS': {
@@ -90,25 +96,28 @@ export default (state = { posts: [] }, action) => {
       }
     }
     case 'CREATE_COMMENT_SUCCESS': {
+      let categories = state.categories !== undefined ? state.categories.slice() : [];
       let newArray = state.posts.slice();
       return {
         status: action.status,
         posts: newArray.map(post => {
-          if (post.id == action.comment.parentId) {
+          if (post.id === action.comment.parentId) {
             post.comments.push(action.comment)
             post.commentCount++;
           }
           return post;
-        })
+        }),
+        categories : categories
 
       }
     }
     case 'EDIT_COMMENT_SUCCESS': {
+      let categories = state.categories !== undefined ? state.categories.slice() : [];
       let newArray = state.posts.slice();
       return {
         status: action.status,
         posts: newArray.map(post => {
-          if (post.id == action.comment.parentId) {
+          if (post.id === action.comment.parentId) {
             post.comments = post.comments.map(comment => {
               if (comment.id === action.comment.id) {
                 return action.comment;
@@ -118,15 +127,17 @@ export default (state = { posts: [] }, action) => {
             })
           }
           return post;
-        })
+        }),
+        categories : categories
       }
     }
     case 'DELETE_COMMENT_SUCCESS': {
+      let categories = state.categories !== undefined ? state.categories.slice() : [];
       let newArray = state.posts.slice();
       return {
         status: action.status,
         posts: newArray.map(item => {
-          if (item.comments == undefined) return item;
+          if (item.comments === undefined) return item;
           if (item.commentCount > 0) {
             item.comments = item.comments.filter(comment => {
               if (comment.id !== action.deleted_comment.id) {
@@ -136,30 +147,36 @@ export default (state = { posts: [] }, action) => {
             item.commentCount--;
           }
           return item;
-        })
+        }),
+        categories : categories
       }
     }
     case 'EDIT_POST_SUCCESS': {
+      let categories = state.categories !== undefined ? state.categories.slice() : [];
+      console.log(categories)
       let newArray = state.posts.slice();
       return {
         status: action.status,
         posts : newArray.map(item => {
-          if (item.id == action.post.id) {            
+          if (item.id === action.post.id) {            
             action.post.showComments = item.showComments 
             action.post.comments = item.comments;           
             return action.post
           } else {
             return item
           }
-        })
+        }),
+        categories : categories
       }
     }
     case 'CREATE_POST_SUCCESS': {      
+      let categories = state.categories !== undefined ? state.categories.slice() : [];
       let newArray = state.posts.slice();
       newArray.splice(0, 0, action.post)
       return {
         status: action.status,
-        posts: newArray
+        posts: newArray,
+        categories : categories
       }
     }
     case 'FETCH_CATEGORIES_SUCCESS': {
@@ -171,9 +188,11 @@ export default (state = { posts: [] }, action) => {
       }
     }
     case 'SORTED': {      
+      let categories = state.categories !== undefined ? state.categories.slice() : [];
       return {
         status: action.status,
-        posts: action.posts
+        posts: action.posts,
+        categories : categories
       }
     }
     default:

@@ -127,8 +127,8 @@ export const fetchError = (errorCode, errorMessage) => {
     return {
         type: 'FETCH_ERROR',
         status: RETURN_404,
-        title: errorCode == null ? 'Something wrong!' : errorCode + ' Error!',
-        menssage: errorMessage == null ? 'Error on fetch data.' : errorMessage,
+        title: errorCode === null ? 'Something wrong!' : errorCode + ' Error!',
+        menssage: errorMessage === null ? 'Error on fetch data.' : errorMessage,
         showBackButton: false
     }
 }
@@ -288,7 +288,7 @@ export const fetchPost = (id) => {
 
         Axios.get(`${api}/posts/${id}`, { headers })
             .then(response => {
-                if (Object.keys(response.data).length == 0) {
+                if (Object.keys(response.data).length === 0) {
                     dispatch(fetchPostUnsuccess())
                 } else {
                     dispatch(fetchPostSuccess(response.data));
@@ -331,7 +331,7 @@ export const fetchPostsByCategory = (category) => {
     return (dispatch) => {
         Axios.get(`${api}/categories`, { headers })
             .then(response => {
-                if (response.data.categories.filter(item => item.name == category).length > 0) {
+                if (response.data.categories.filter(item => item.name === category).length > 0) {
 
                     Axios.get(`${api}/${category}/posts`, { headers })
                         .then(response => {
@@ -356,7 +356,7 @@ export const sortBy = (sortMode, posts) => {
     return (dispatch) => {
         let sortedPosts = posts.slice();
         
-        if (sortMode == 'by-date') {
+        if (sortMode === 'by-date') {
             sortedPosts.sort(function (a, b) {
                 if (a.timestamp > b.timestamp) {
                     return -1;
@@ -364,13 +364,13 @@ export const sortBy = (sortMode, posts) => {
                 if (a.timestamp < b.timestamp) {
                     return 1;
                 }
-                if (a.timestamp == b.timestamp) {
+                if (a.timestamp === b.timestamp) {
                     return 0;
                 }
             });
         }
 
-        if (sortMode == 'by-score') {
+        if (sortMode === 'by-score') {
             sortedPosts.sort(function (a, b) {
                 if (a.voteScore > b.voteScore) {
                     return -1;
@@ -378,7 +378,7 @@ export const sortBy = (sortMode, posts) => {
                 if (a.voteScore < b.voteScore) {
                     return 1;
                 }
-                if (a.voteScore == b.voteScore) {
+                if (a.voteScore === b.voteScore) {
                     return 0;
                 }
             });

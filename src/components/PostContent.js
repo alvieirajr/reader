@@ -28,7 +28,7 @@ class PostContent extends Component {
       <ListGroupItem className='text-left without-padding-bottom'>
         <Row>
           <Col xs={10}>
-            {this.props.showBody == false ? <a href={`/${this.props.category}/${this.props.id}`} ><h5><b>{this.props.title}</b></h5></a> :
+            {this.props.showBody === false ? <a href={`/${this.props.category}/${this.props.id}`} ><h5><b>{this.props.title}</b></h5></a> :
               <h5><b>{this.props.title}</b></h5>
             }
             <p>{this.props.author} &#183; {timeConverter(this.props.timestamp)} &#183; <a href={'/' + this.props.category}><Label bsStyle='primary'>{this.props.category}</Label></a></p>

@@ -1,6 +1,4 @@
 export default (state = { posts: [] }, action) => {
-  console.log(state);
-  console.log(action)
   switch (action.type) {
     case 'FETCH_POSTS_SUCCESS': {      
       return {

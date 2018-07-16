@@ -22,7 +22,7 @@ class Header extends Component {
             this.setState({ listBy : this.props.location.pathname.slice(1)});
         }    
         console.log(this.props)   
-        if (this.props.author === null) {
+        if (localStorage.getItem('author') === null) {
             this.setState({ showAuthorForm : true });
         }
     }

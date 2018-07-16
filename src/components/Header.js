@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import { Row, Col, Navbar, Button, FormGroup, DropdownButton, MenuItem } from 'react-bootstrap';
+import { Nav, Row, Col, Navbar, Button, FormGroup, DropdownButton, MenuItem } from 'react-bootstrap';
 import FormNewPost from './FormNewPost';
+import FormAuthor from './FormAuthor';
 
 class Header extends Component {
     constructor(props) {
         super(props);
         this.state = {
             showNewPostForm: false,
+            showAuthorForm: false,
             listBy: ''
         }
     }
@@ -18,7 +20,11 @@ class Header extends Component {
         }
         if (this.props.match.path === '/:category' ) {            
             this.setState({ listBy : this.props.location.pathname.slice(1)});
-        }        
+        }    
+        console.log(this.props)   
+        if (this.props.author === null) {
+            this.setState({ showAuthorForm : true });
+        }
     }
 
     newPost = () => {
@@ -29,6 +35,10 @@ class Header extends Component {
         this.setState({ showNewPostForm: false });
     }
 
+    closeAuthorForm = () => {
+        this.setState({ showAuthorForm: false });
+    }
+    
     sortPosts = (eventKey) => {
         this.setState({ sortBy: eventKey });
         this.props.sortBy(eventKey, this.props.posts)
@@ -45,6 +55,7 @@ class Header extends Component {
     }
 
     render() {
+        console.log(this.props)
         return (
             <div>
                 <Navbar>
@@ -82,18 +93,22 @@ class Header extends Component {
 
                                         {
                                             this.props.categories.map((item, i) => {
-                                                return <MenuItem eventKey={item.name} active={item.name === this.state.listBy ? true : false } href={'/' + item.name}>{item.name}</MenuItem>
+                                                return <MenuItem key={i} eventKey={item.name} active={item.name === this.state.listBy ? true : false } href={'/' + item.name}>{item.name}</MenuItem>
                                             })
                                         }
 
                                     </DropdownButton>
-                                    : ''}
-                            </FormGroup>
+                                    : ''}     
+                                <span>&nbsp;&nbsp;</span>
+                                <Button type="submit" onClick={() => this.setState({ showAuthorForm : true })}>Username: {localStorage.getItem("author")}</Button>                                                     
+                            </FormGroup>                            
                         </Navbar.Brand>
                     </Navbar.Header>
 
                     <FormNewPost categories={this.props.categories} fetchCategories={this.props.fetchCategories} show={this.state.showNewPostForm} newPost={this.props.newPost} close={this.closeForm} />
 
+                    <FormAuthor backdrop='static' setAuthor={this.props.setAuthor} show={this.state.showAuthorForm} close={this.closeAuthorForm} />
+                    
                 </Navbar>
 
             </div>

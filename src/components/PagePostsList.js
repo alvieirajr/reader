@@ -47,7 +47,8 @@ const mapDispatchToProps = (dispatch) => {
     editPost: (post) => dispatch(PostActions.editPost(post)),
     newPost: (post) => dispatch(PostActions.newPost(post)),
     fetchCategories: () => dispatch(PostActions.fetchCategories()),
-    sortBy: (sortMode, posts) => dispatch(PostActions.sortBy(sortMode, posts))
+    sortBy: (sortMode, posts) => dispatch(PostActions.sortBy(sortMode, posts)),
+    setAuthor: (name) => dispatch(PostActions.setAuthor(name))
   }
 };
 

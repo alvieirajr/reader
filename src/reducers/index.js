@@ -1,6 +1,8 @@
 export default (state = { posts: [] }, action) => {
+  console.log(state);
+  console.log(action)
   switch (action.type) {
-    case 'FETCH_POSTS_SUCCESS': {
+    case 'FETCH_POSTS_SUCCESS': {      
       return {
         posts: action.posts,
         status: action.status
@@ -23,6 +25,7 @@ export default (state = { posts: [] }, action) => {
         categories : categories
       }
     }
+    
     case 'VOTE_COMMENT_SUCCESS': {
       let categories = state.categories !== undefined ? state.categories.slice() : [];
       let newArray = state.posts.slice();
@@ -108,7 +111,6 @@ export default (state = { posts: [] }, action) => {
           return post;
         }),
         categories : categories
-
       }
     }
     case 'EDIT_COMMENT_SUCCESS': {
@@ -153,7 +155,6 @@ export default (state = { posts: [] }, action) => {
     }
     case 'EDIT_POST_SUCCESS': {
       let categories = state.categories !== undefined ? state.categories.slice() : [];
-      console.log(categories)
       let newArray = state.posts.slice();
       return {
         status: action.status,
@@ -195,7 +196,16 @@ export default (state = { posts: [] }, action) => {
         categories : categories
       }
     }
-    default:
+    case 'SET_AUTHOR_SUCCESS': {
+      let categories = state.categories !== undefined ? state.categories.slice() : [];
+      let newArray = state.posts.slice();  
+      return {
+        status: action.status,
+        posts: newArray,
+        categories: categories
+      }      
+    }
+    default:    
       return state;
   }
 };

@@ -149,6 +149,13 @@ export const sortBySuccess = (sortedPosts) => {
     }
 }
 
+export const setAuthorSuccess = (name) => {
+    return {
+        type: 'SET_AUTHOR_SUCCESS',
+        status: RETURN_OK
+    }
+}
+
 export const fetchPosts = () => {
     return (dispatch) => {
         Axios.get(`${api}/posts`, { headers })
@@ -214,7 +221,6 @@ export const createComment = (params) => {
 
         params.id = uuidv4();
         params.timestamp = Date.now();
-        params.author = 'thingthree';
 
         Axios.post(`${api}/comments`, params, { headers })
             .then(response => {
@@ -261,7 +267,6 @@ export const editPost = (post) => {
     }
 }
 
-
 export const newPost = (post) => {
     return (dispatch) => {
         let params = {
@@ -269,7 +274,7 @@ export const newPost = (post) => {
             timestamp: Date.now(),
             title: post.title,
             body: post.body,
-            author: 'thingthree',
+            author: post.author,
             category: post.category
         }
 
@@ -387,4 +392,11 @@ export const sortBy = (sortMode, posts) => {
         dispatch(sortBySuccess(sortedPosts));
     }
 
+}
+
+export const setAuthor = (name) =>  {
+    localStorage.setItem("author", name);
+    return (dispatch) => {
+        dispatch(setAuthorSuccess(name));
+    }
 }

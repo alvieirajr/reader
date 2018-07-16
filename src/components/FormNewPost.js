@@ -44,6 +44,7 @@ class FormNewPost extends React.Component {
     if (this.state.title.trim().length > 0 && this.state.body.trim().length > 0 && this.state.category !== '') {
       this.props.newPost({
         title: this.state.title,
+        author: localStorage.getItem("author"),
         body: this.state.body,
         category: this.state.category
       });

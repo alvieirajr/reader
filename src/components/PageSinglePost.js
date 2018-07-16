@@ -17,6 +17,7 @@ class PageSinglePost extends Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <div>
         {this.props.status === PostActions.RETURN_OK ?
@@ -46,7 +47,8 @@ const mapDispatchToProps = (dispatch) => {
     editComment: (id, body) => dispatch(PostActions.editComment(id, body)),
     editPost: (post) => dispatch(PostActions.editPost(post)),
     newPost: (post) => dispatch(PostActions.newPost(post)),
-    fetchCategories: () => dispatch(PostActions.fetchCategories())
+    fetchCategories: () => dispatch(PostActions.fetchCategories()),
+    setAuthor: (name) => dispatch(PostActions.setAuthor(name))
   }
 };
 

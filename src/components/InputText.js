@@ -19,10 +19,12 @@ class InputText extends Component {
 
     _handleKeyPress = (e) => {
         if (e.key === 'Enter') {
+            console.log(this.props)
             if (this.state.value.trim().length > 0) {
                 this.props.createComment({
                     parentId: this.props.parentId,
-                    body: this.state.value
+                    body: this.state.value,
+                    author: localStorage.getItem("author")
                 })
                 this.setState({ value: '' });
             }
